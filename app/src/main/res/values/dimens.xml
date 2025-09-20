@@ -2,102 +2,77 @@
 <resources>
     
     <!-- App Bar and Toolbar Dimensions -->
-    <dimen name="app_bar_height">200dp</dimen>
-    <dimen name="toolbar_height">56dp</dimen>
-    
-    <!-- Title Text Sizes -->
+    <dimen name="app_bar_height">280dp</dimen>
     <dimen name="expanded_title_size">32sp</dimen>
     <dimen name="collapsed_title_size">20sp</dimen>
     
-    <!-- Title Margins -->
+    <!-- Title Margins for CollapsingToolbarLayout -->
     <dimen name="expanded_title_margin_horizontal">24dp</dimen>
-    <dimen name="expanded_title_margin_bottom">24dp</dimen>
+    <dimen name="expanded_title_margin_bottom">16dp</dimen>
     
-    <!-- Navigation Drawer -->
-    <dimen name="navigation_drawer_width">280dp</dimen>
+    <!-- Navigation Drawer Dimensions -->
+    <dimen name="navigation_drawer_width">320dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     
-    <!-- Drawer Header -->
+    <!-- Drawer Header Dimensions -->
     <dimen name="drawer_header_padding_horizontal">24dp</dimen>
-    <dimen name="drawer_header_padding_top">24dp</dimen>
+    <dimen name="drawer_header_padding_top">48dp</dimen>
     <dimen name="drawer_header_padding_bottom">16dp</dimen>
-    <dimen name="drawer_header_icon_size">48dp</dimen>
+    <dimen name="drawer_header_icon_size">64dp</dimen>
     <dimen name="drawer_header_icon_margin_bottom">16dp</dimen>
     <dimen name="drawer_header_title_margin_bottom">4dp</dimen>
     
-    <!-- Drawer Items -->
+    <!-- Drawer Item Dimensions -->
     <dimen name="drawer_item_height">56dp</dimen>
     <dimen name="drawer_item_padding_horizontal">24dp</dimen>
     <dimen name="drawer_item_icon_size">24dp</dimen>
-    <dimen name="drawer_item_icon_margin_end">16dp</dimen>
-    <dimen name="drawer_item_arrow_size">16dp</dimen>
+    <dimen name="drawer_item_icon_margin_end">32dp</dimen>
+    <dimen name="drawer_item_arrow_size">20dp</dimen>
     <dimen name="drawer_item_arrow_margin_start">8dp</dimen>
     
-    <!-- List Items -->
+    <!-- List Item Dimensions -->
     <dimen name="list_item_height">72dp</dimen>
     <dimen name="list_item_padding_horizontal">16dp</dimen>
     <dimen name="list_item_padding_vertical">12dp</dimen>
     <dimen name="list_item_icon_size">40dp</dimen>
     <dimen name="list_item_icon_margin_end">16dp</dimen>
-    <dimen name="list_item_description_margin_top">2dp</dimen>
-    <dimen name="list_item_chevron_size">20dp</dimen>
+    <dimen name="list_item_description_margin_top">4dp</dimen>
+    <dimen name="list_item_chevron_size">24dp</dimen>
     <dimen name="list_item_chevron_margin_start">8dp</dimen>
     
     <!-- Content Padding -->
     <dimen name="content_padding_top">16dp</dimen>
-    <dimen name="list_padding_horizontal">16dp</dimen>
+    <dimen name="list_padding_horizontal">0dp</dimen>
     <dimen name="list_padding_top">8dp</dimen>
     <dimen name="list_padding_bottom">16dp</dimen>
-    <dimen name="bottom_spacing">80dp</dimen>
+    <dimen name="bottom_spacing">48dp</dimen>
     
-    <!-- Settings -->
-    <dimen name="settings_padding_horizontal">16dp</dimen>
+    <!-- Settings Padding -->
+    <dimen name="settings_padding_horizontal">0dp</dimen>
     <dimen name="settings_padding_bottom">16dp</dimen>
     
-    <!-- Card and Elevation -->
-    <dimen name="card_elevation">2dp</dimen>
-    <dimen name="card_corner_radius">8dp</dimen>
-    <dimen name="card_margin">8dp</dimen>
-    
-    <!-- FAB -->
-    <dimen name="fab_margin">16dp</dimen>
-    
-    <!-- Standard Margins and Paddings -->
-    <dimen name="margin_small">4dp</dimen>
-    <dimen name="margin_medium">8dp</dimen>
-    <dimen name="margin_large">16dp</dimen>
-    <dimen name="margin_extra_large">24dp</dimen>
-    
-    <dimen name="padding_small">4dp</dimen>
-    <dimen name="padding_medium">8dp</dimen>
-    <dimen name="padding_large">16dp</dimen>
-    <dimen name="padding_extra_large">24dp</dimen>
-    
     <!-- Text Sizes -->
-    <dimen name="text_size_small">12sp</dimen>
-    <dimen name="text_size_medium">14sp</dimen>
-    <dimen name="text_size_large">16sp</dimen>
-    <dimen name="text_size_extra_large">18sp</dimen>
-    <dimen name="text_size_title">20sp</dimen>
-    <dimen name="text_size_headline">24sp</dimen>
+    <dimen name="oneui_drawer_header_title_size">20sp</dimen>
+    <dimen name="oneui_drawer_header_subtitle_size">14sp</dimen>
+    <dimen name="oneui_drawer_item_text_size">16sp</dimen>
+    <dimen name="oneui_list_item_title_size">16sp</dimen>
+    <dimen name="oneui_list_item_description_size">14sp</dimen>
     
-    <!-- Line Heights -->
-    <dimen name="line_height_small">16dp</dimen>
-    <dimen name="line_height_medium">20dp</dimen>
-    <dimen name="line_height_large">24dp</dimen>
-    
-    <!-- Icon Sizes -->
-    <dimen name="icon_size_small">16dp</dimen>
-    <dimen name="icon_size_medium">24dp</dimen>
-    <dimen name="icon_size_large">32dp</dimen>
-    <dimen name="icon_size_extra_large">48dp</dimen>
+    <!-- Card and Elevation -->
+    <dimen name="card_corner_radius">12dp</dimen>
+    <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
     
     <!-- Button Dimensions -->
     <dimen name="button_height">48dp</dimen>
-    <dimen name="button_corner_radius">4dp</dimen>
+    <dimen name="button_corner_radius">24dp</dimen>
+    <dimen name="button_padding_horizontal">24dp</dimen>
     
-    <!-- Scroll List Specific -->
-    <dimen name="scroll_list_item_height">64dp</dimen>
-    <dimen name="scroll_list_padding">12dp</dimen>
+    <!-- Minimum Touch Target -->
+    <dimen name="min_touch_target_size">48dp</dimen>
+    
+    <!-- Status Bar and System UI -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="navigation_bar_height">48dp</dimen>
     
 </resources>
