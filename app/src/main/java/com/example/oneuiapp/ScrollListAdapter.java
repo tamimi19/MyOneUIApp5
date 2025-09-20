@@ -15,12 +15,12 @@ import java.util.List;
 
 public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.ScrollListViewHolder> {
 
-    private final Context context;
+    private Context context;
     private List<ScrollListItem> items;
-    private OnScrollListItemClickListener clickListener;
+    private OnItemClickListener itemClickListener;
 
-    public interface OnScrollListItemClickListener {
-        void onScrollListItemClick(ScrollListItem item, int position);
+    public interface OnItemClickListener {
+        void onItemClick(ScrollListItem item, int position);
     }
 
     public ScrollListAdapter(Context context) {
@@ -28,80 +28,33 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
         this.items = new ArrayList<>();
     }
 
-    public void setOnScrollListItemClickListener(OnScrollListItemClickListener listener) {
-        this.clickListener = listener;
-    }
-
     public void setItems(List<ScrollListItem> items) {
-        this.items = items != null ? new ArrayList<>(items) : new ArrayList<>();
+        this.items.clear();
+        if (items != null) {
+            this.items.addAll(items);
+        }
         notifyDataSetChanged();
     }
 
     public void addItem(ScrollListItem item) {
         if (item != null) {
-            items.add(item);
+            this.items.add(item);
             notifyItemInserted(items.size() - 1);
         }
     }
 
-    public void removeItem(int position) {
-        if (position >= 0 && position < items.size()) {
-            items.remove(position);
-            notifyItemRemoved(position);
+    public void addItems(List<ScrollListItem> newItems) {
+        if (newItems != null && !newItems.isEmpty()) {
+            int startPosition = this.items.size();
+            this.items.addAll(newItems);
+            notifyItemRangeInserted(startPosition, newItems.size());
         }
     }
 
     public void clearItems() {
-        int size = items.size();
-        items.clear();
-        notifyItemRangeRemoved(0, size);
-    }
-
-    @NonNull
-    @Override
-    public ScrollListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.scroll_list_item, parent, false);
-        return new ScrollListViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ScrollListViewHolder holder, int position) {
-        ScrollListItem item = items.get(position);
-        
-        holder.titleTextView.setText(item.getTitle());
-        holder.descriptionTextView.setText(item.getDescription());
-        
-        if (item.getIconResource() != 0) {
-            holder.iconImageView.setImageResource(item.getIconResource());
-            holder.iconImageView.setVisibility(View.VISIBLE);
-        } else {
-            holder.iconImageView.setVisibility(View.GONE);
-        }
-        
-        if (item.showChevron()) {
-            holder.chevronImageView.setVisibility(View.VISIBLE);
-        } else {
-            holder.chevronImageView.setVisibility(View.GONE);
-        }
-        
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (clickListener != null) {
-                    int adapterPosition = holder.getAdapterPosition();
-                    if (adapterPosition != RecyclerView.NO_POSITION) {
-                        clickListener.onScrollListItemClick(item, adapterPosition);
-                    }
-                }
-            }
-        });
-
-        holder.itemView.setSelected(item.isSelected());
-    }
-
-    @Override
-    public int getItemCount() {
-        return items.size();
+        int itemCount = this.items.size();
+        this.items.clear();
+        notifyItemRangeRemoved(0, itemCount);
     }
 
     public ScrollListItem getItem(int position) {
@@ -111,87 +64,86 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
         return null;
     }
 
-    public List<ScrollListItem> getAllItems() {
-        return new ArrayList<>(items);
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.itemClickListener = listener;
     }
 
-    public static class ScrollListViewHolder extends RecyclerView.ViewHolder {
+    @NonNull
+    @Override
+    public ScrollListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
+        return new ScrollListViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull ScrollListViewHolder holder, int position) {
+        ScrollListItem item = items.get(position);
+        holder.bind(item, position);
+    }
+
+    @Override
+    public int getItemCount() {
+        return items.size();
+    }
+
+    public class ScrollListViewHolder extends RecyclerView.ViewHolder {
         
-        final ImageView iconImageView;
-        final TextView titleTextView;
-        final TextView descriptionTextView;
-        final ImageView chevronImageView;
+        private ImageView iconImageView;
+        private TextView titleTextView;
+        private TextView descriptionTextView;
+        private ImageView chevronImageView;
 
         public ScrollListViewHolder(@NonNull View itemView) {
             super(itemView);
-            iconImageView = itemView.findViewById(R.id.scroll_item_icon);
-            titleTextView = itemView.findViewById(R.id.scroll_item_title);
-            descriptionTextView = itemView.findViewById(R.id.scroll_item_description);
-            chevronImageView = itemView.findViewById(R.id.scroll_item_chevron);
+            iconImageView = itemView.findViewById(R.id.list_item_icon);
+            titleTextView = itemView.findViewById(R.id.list_item_title);
+            descriptionTextView = itemView.findViewById(R.id.list_item_description);
+            chevronImageView = itemView.findViewById(R.id.list_item_chevron);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && itemClickListener != null) {
+                        itemClickListener.onItemClick(items.get(position), position);
+                    }
+                }
+            });
+        }
+
+        public void bind(ScrollListItem item, int position) {
+            if (item == null) {
+                return;
+            }
+
+            titleTextView.setText(item.getTitle());
+            
+            if (item.getDescription() != null && !item.getDescription().isEmpty()) {
+                descriptionTextView.setText(item.getDescription());
+                descriptionTextView.setVisibility(View.VISIBLE);
+            } else {
+                descriptionTextView.setVisibility(View.GONE);
+            }
+
+            if (item.getIconResource() != 0) {
+                iconImageView.setImageResource(item.getIconResource());
+                iconImageView.setVisibility(View.VISIBLE);
+            } else {
+                iconImageView.setVisibility(View.GONE);
+            }
+
+            if (item.isShowChevron()) {
+                chevronImageView.setVisibility(View.VISIBLE);
+            } else {
+                chevronImageView.setVisibility(View.GONE);
+            }
+
+            itemView.setContentDescription(
+                context.getString(R.string.list_item_title) + ": " + item.getTitle()
+            );
+
+            itemView.setEnabled(item.isEnabled());
+            itemView.setAlpha(item.isEnabled() ? 1.0f : 0.6f);
         }
     }
 }
-
-class ScrollListItem {
-    private String title;
-    private String description;
-    private int iconResource;
-    private boolean selected;
-    private boolean showChevron;
-
-    public ScrollListItem() {
-        this.selected = false;
-        this.showChevron = true;
-    }
-
-    public ScrollListItem(String title, String description) {
-        this();
-        this.title = title;
-        this.description = description;
-    }
-
-    public ScrollListItem(String title, String description, int iconResource) {
-        this(title, description);
-        this.iconResource = iconResource;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getIconResource() {
-        return iconResource;
-    }
-
-    public void setIconResource(int iconResource) {
-        this.iconResource = iconResource;
-    }
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
-    public boolean showChevron() {
-        return showChevron;
-    }
-
-    public void setShowChevron(boolean showChevron) {
-        this.showChevron = showChevron;
-    }
-          }
