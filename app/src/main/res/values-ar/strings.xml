@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- معلومات التطبيق -->
+    <string name="app_name">تطبيق OneUI</string>
+    <string name="app_version">الإصدار 1.0</string>
+    <string name="app_icon_description">أيقونة التطبيق</string>
+
+    <!-- التنقل -->
+    <string name="home">الرئيسية</string>
+    <string name="scroll_screen">شاشة التمرير</string>
+    <string name="settings">الإعدادات</string>
+    <string name="notifications">الإشعارات</string>
+    <string name="notifications_settings">إعدادات الإشعارات</string>
+
+    <!-- المحتوى الرئيسي -->
+    <string name="main_item">عنصر رئيسي</string>
+    <string name="welcome_message">مرحباً بك في تطبيق OneUI</string>
+
+    <!-- عناصر القائمة -->
+    <string name="list_item_title">عنوان عنصر القائمة</string>
+    <string name="list_item_description">هذا وصف لعنصر القائمة</string>
+
+    <!-- الإعدادات -->
+    <string name="language">اللغة</string>
+    <string name="language_summary">اختر لغة التطبيق</string>
+    <string name="language_arabic">العربية</string>
+    <string name="language_english">English</string>
+    
+    <string name="theme">المظهر</string>
+    <string name="theme_summary">اختر مظهر التطبيق</string>
+    <string name="theme_light">المظهر الفاتح</string>
+    <string name="theme_dark">المظهر الداكن</string>
+    
+    <string name="notifications_title">الإشعارات</string>
+    <string name="notifications_summary">إدارة إعدادات الإشعارات</string>
+
+    <!-- إمكانية الوصول -->
+    <string name="drawer_item_icon_description">أيقونة عنصر التنقل</string>
+    <string name="drawer_item_arrow_description">سهم التنقل</string>
+    <string name="list_item_icon_description">أيقونة عنصر القائمة</string>
+    <string name="list_item_chevron_description">سهم اختيار العنصر</string>
+
+    <!-- رأس الدرج -->
+    <string name="drawer_open">فتح درج التنقل</string>
+    <string name="drawer_close">إغلاق درج التنقل</string>
+
+    <!-- الإجراءات -->
+    <string name="action_settings">الإعدادات</string>
+    <string name="action_back">رجوع</string>
+    
+    <!-- الرسائل -->
+    <string name="loading">جارٍ التحميل…</string>
+    <string name="error_message">حدث خطأ</string>
+    <string name="retry">إعادة المحاولة</string>
+
+    <!-- مصفوفات اللغة -->
+    <string-array name="language_entries">
+        <item>@string/language_english</item>
+        <item>@string/language_arabic</item>
+    </string-array>
+    
+    <string-array name="language_values">
+        <item>en</item>
+        <item>ar</item>
+    </string-array>
+
+    <!-- مصفوفات المظهر -->
+    <string-array name="theme_entries">
+        <item>@string/theme_light</item>
+        <item>@string/theme_dark</item>
+    </string-array>
+    
+    <string-array name="theme_values">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
+</resources>
