@@ -1,3 +1,4 @@
+
 package com.example.oneuiapp;
 
 import android.content.Context;
@@ -33,25 +34,25 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         drawerItems.clear();
         
         drawerItems.add(new DrawerItem(
-            R.drawable.ic_home,
+            R.drawable.ic_oui_home_outline,
             context.getString(R.string.home),
             DrawerItem.ITEM_TYPE_HOME
         ));
         
         drawerItems.add(new DrawerItem(
-            R.drawable.ic_list,
+            R.drawable.ic_oui_list,
             context.getString(R.string.scroll_screen),
             DrawerItem.ITEM_TYPE_SCROLL_LIST
         ));
         
         drawerItems.add(new DrawerItem(
-            R.drawable.ic_settings,
+            R.drawable.ic_oui_settings_outline,
             context.getString(R.string.settings),
             DrawerItem.ITEM_TYPE_SETTINGS
         ));
         
         drawerItems.add(new DrawerItem(
-            R.drawable.ic_notifications,
+            R.drawable.ic_oui_notification_outline,
             context.getString(R.string.notifications),
             DrawerItem.ITEM_TYPE_NOTIFICATIONS
         ));
