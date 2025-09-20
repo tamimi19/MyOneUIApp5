@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".ScrollListActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_bar_height"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Widget.Design.AppBarLayout"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:contentScrim="?attr/colorPrimary"
+            app:statusBarScrim="?attr/colorPrimaryVariant"
+            app:extendedTitleEnabled="true"
+            app:extendedTitleTextAppearance="@style/OneUIExpandedTitleTextAppearance"
+            app:collapsedTitleTextAppearance="@style/OneUICollapsedTitleTextAppearance"
+            app:expandedTitleGravity="bottom|center_horizontal"
+            app:collapsedTitleGravity="top|start"
+            app:expandedTitleMarginStart="@dimen/expanded_title_margin_horizontal"
+            app:expandedTitleMarginEnd="@dimen/expanded_title_margin_horizontal"
+            app:expandedTitleMarginBottom="@dimen/expanded_title_margin_bottom"
+            app:toolbarId="@id/toolbar">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@android:color/transparent"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@drawable/ic_arrow_back"
+                app:titleTextColor="?attr/colorOnPrimary" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- قائمة التمرير مع 200 عنصر -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/scroll_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingStart="@dimen/list_padding_horizontal"
+        android:paddingEnd="@dimen/list_padding_horizontal"
+        android:paddingTop="@dimen/list_padding_top"
+        android:paddingBottom="@dimen/list_padding_bottom"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="true"
+        android:scrollbarStyle="outsideOverlay"
+        tools:listitem="@layout/scroll_list_item" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
