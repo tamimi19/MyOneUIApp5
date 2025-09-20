@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_menu);
+            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_oui_drawer);
         }
         
         // إعداد معالج الضغط على زر القائمة
