@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:background="@drawable/drawer_header_background"
+    android:gravity="bottom"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/drawer_header_padding_horizontal"
+    android:paddingTop="@dimen/drawer_header_padding_top"
+    android:paddingEnd="@dimen/drawer_header_padding_horizontal"
+    android:paddingBottom="@dimen/drawer_header_padding_bottom"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <ImageView
+        android:id="@+id/drawer_header_icon"
+        android:layout_width="@dimen/drawer_header_icon_size"
+        android:layout_height="@dimen/drawer_header_icon_size"
+        android:layout_marginBottom="@dimen/drawer_header_icon_margin_bottom"
+        android:contentDescription="@string/app_icon_description"
+        android:src="@mipmap/ic_launcher"
+        app:tint="?attr/colorOnPrimary" />
+
+    <TextView
+        android:id="@+id/drawer_header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/drawer_header_title_margin_bottom"
+        android:text="@string/app_name"
+        android:textAppearance="@style/OneUIDrawerHeaderTitleTextAppearance"
+        android:textColor="?attr/colorOnPrimary" />
+
+    <TextView
+        android:id="@+id/drawer_header_subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_version"
+        android:textAppearance="@style/OneUIDrawerHeaderSubtitleTextAppearance"
+        android:textColor="?attr/colorOnPrimary"
+        android:alpha="0.7" />
+
+</LinearLayout>
