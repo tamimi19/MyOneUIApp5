@@ -7,50 +7,51 @@ import android.content.res.Configuration;
 import androidx.appcompat.app.AppCompatDelegate;
 
 public class ThemeManager {
-
-    private static final String PREFS_NAME = "theme_prefs";
+    
+    private static final String PREF_NAME = "theme_preferences";
     private static final String KEY_THEME = "selected_theme";
-    private static final String THEME_LIGHT = "light";
-    private static final String THEME_DARK = "dark";
-    private static final String THEME_SYSTEM = "system";
-
-    private final Context context;
-    private final SharedPreferences preferences;
-    private boolean themeChanged = false;
-
+    private static final String KEY_THEME_CHANGED = "theme_changed";
+    
+    public static final String THEME_LIGHT = "light";
+    public static final String THEME_DARK = "dark";
+    public static final String THEME_SYSTEM = "system";
+    
+    private Context context;
+    private SharedPreferences preferences;
+    
     public ThemeManager(Context context) {
-        this.context = context;
-        this.preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        this.context = context.getApplicationContext();
+        this.preferences = this.context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
     }
-
-    /**
-     * Sets the application theme and applies it immediately
-     * @param theme Theme identifier (light, dark, system)
-     */
-    public void setTheme(String theme) {
+    
+    public void setTheme(String themeMode) {
+        if (themeMode == null || themeMode.isEmpty()) {
+            themeMode = THEME_SYSTEM;
+        }
+        
         String currentTheme = getCurrentTheme();
-        if (!currentTheme.equals(theme)) {
-            preferences.edit().putString(KEY_THEME, theme).apply();
-            applyTheme();
-            themeChanged = true;
+        if (!currentTheme.equals(themeMode)) {
+            preferences.edit()
+                    .putString(KEY_THEME, themeMode)
+                    .putBoolean(KEY_THEME_CHANGED, true)
+                    .apply();
+            
+            applyThemeMode(themeMode);
         }
     }
-
-    /**
-     * Gets the currently selected theme
-     * @return Current theme identifier
-     */
+    
     public String getCurrentTheme() {
-        return preferences.getString(KEY_THEME, THEME_LIGHT);
+        return preferences.getString(KEY_THEME, THEME_SYSTEM);
     }
-
-    /**
-     * Applies the current theme setting to the application
-     */
+    
     public void applyTheme() {
-        String theme = getCurrentTheme();
-        
-        switch (theme) {
+        String savedTheme = getCurrentTheme();
+        applyThemeMode(savedTheme);
+        markThemeAsApplied();
+    }
+    
+    private void applyThemeMode(String themeMode) {
+        switch (themeMode) {
             case THEME_LIGHT:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 break;
@@ -58,113 +59,55 @@ public class ThemeManager {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 break;
             case THEME_SYSTEM:
+            default:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
                 break;
-            default:
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
         }
     }
-
-    /**
-     * Checks if the theme has been changed recently
-     * @return True if theme was changed since last check
-     */
-    public boolean hasThemeChanged() {
-        boolean changed = themeChanged;
-        themeChanged = false;
-        return changed;
-    }
-
-    /**
-     * Checks if the current theme is dark mode
-     * @return True if dark theme is active
-     */
-    public boolean isDarkTheme() {
+    
+    public boolean isDarkModeEnabled() {
         String currentTheme = getCurrentTheme();
-        
         if (THEME_DARK.equals(currentTheme)) {
             return true;
-        } else if (THEME_SYSTEM.equals(currentTheme)) {
-            Configuration config = context.getResources().getConfiguration();
-            return (config.uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
-        }
-        
-        return false;
-    }
-
-    /**
-     * Gets the theme resource ID for the current theme
-     * @return Resource ID for the current theme
-     */
-    public int getThemeResourceId() {
-        if (isDarkTheme()) {
-            return R.style.OneUITheme_Dark;
+        } else if (THEME_LIGHT.equals(currentTheme)) {
+            return false;
         } else {
-            return R.style.OneUITheme_Light;
+            // THEME_SYSTEM - check system setting
+            int currentNightMode = context.getResources().getConfiguration().uiMode 
+                    & Configuration.UI_MODE_NIGHT_MASK;
+            return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
         }
     }
-
-    /**
-     * Gets display name for the current theme
-     * @return Localized display name for the theme
-     */
-    public String getThemeDisplayName() {
-        String theme = getCurrentTheme();
-        
-        switch (theme) {
+    
+    public boolean hasThemeChanged() {
+        return preferences.getBoolean(KEY_THEME_CHANGED, false);
+    }
+    
+    private void markThemeAsApplied() {
+        preferences.edit()
+                .putBoolean(KEY_THEME_CHANGED, false)
+                .apply();
+    }
+    
+    public String getThemeDisplayName(String themeMode) {
+        switch (themeMode) {
             case THEME_LIGHT:
                 return context.getString(R.string.theme_light);
             case THEME_DARK:
                 return context.getString(R.string.theme_dark);
             case THEME_SYSTEM:
-                return context.getString(R.string.theme_system);
             default:
-                return context.getString(R.string.theme_light);
+                return context.getString(R.string.theme_system);
         }
     }
-
-    /**
-     * Gets all available theme options
-     * @return Array of theme identifiers
-     */
-    public String[] getAvailableThemes() {
-        return new String[]{THEME_LIGHT, THEME_DARK, THEME_SYSTEM};
+    
+    public boolean isThemeSupported(String themeMode) {
+        return THEME_LIGHT.equals(themeMode) || 
+               THEME_DARK.equals(themeMode) || 
+               THEME_SYSTEM.equals(themeMode);
     }
-
-    /**
-     * Gets display names for all available themes
-     * @return Array of localized theme names
-     */
-    public String[] getThemeDisplayNames() {
-        return new String[]{
-            context.getString(R.string.theme_light),
-            context.getString(R.string.theme_dark),
-            context.getString(R.string.theme_system)
-        };
-    }
-
-    /**
-     * Resets theme to default (light theme)
-     */
-    public void resetToDefault() {
-        setTheme(THEME_LIGHT);
-    }
-
-    /**
-     * Checks if theme follows system setting
-     * @return True if theme follows system
-     */
-    public boolean isSystemTheme() {
-        return THEME_SYSTEM.equals(getCurrentTheme());
-    }
-
-    /**
-     * Static method to initialize theme on app start
-     * @param context Application context
-     */
-    public static void initializeTheme(Context context) {
-        ThemeManager themeManager = new ThemeManager(context);
-        themeManager.applyTheme();
+    
+    public void resetToSystemDefault() {
+        setTheme(THEME_SYSTEM);
     }
 }
