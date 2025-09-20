@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="@dimen/list_item_height"
     android:background="@drawable/list_item_background"
@@ -20,7 +21,8 @@
         android:layout_marginEnd="@dimen/list_item_icon_margin_end"
         android:contentDescription="@string/list_item_icon_description"
         android:scaleType="centerInside"
-        app:tint="?attr/colorPrimary" />
+        app:tint="?attr/colorPrimary"
+        tools:src="@drawable/ic_item_1" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -35,7 +37,8 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textAppearance="@style/OneUIListItemTitleTextAppearance"
-            android:textColor="?attr/colorOnSurface" />
+            android:textColor="?attr/colorOnSurface"
+            tools:text="@string/list_item_title" />
 
         <TextView
             android:id="@+id/list_item_description"
@@ -46,7 +49,8 @@
             android:maxLines="2"
             android:textAppearance="@style/OneUIListItemDescriptionTextAppearance"
             android:textColor="?attr/colorOnSurface"
-            android:alpha="0.7" />
+            android:alpha="0.7"
+            tools:text="@string/list_item_description" />
 
     </LinearLayout>
 
@@ -58,7 +62,8 @@
         android:contentDescription="@string/list_item_chevron_description"
         android:scaleType="centerInside"
         android:src="@drawable/ic_chevron_right"
+        android:visibility="visible"
         app:tint="?attr/colorOnSurface"
-        android:alpha="0.6" />
+        android:alpha="0.5" />
 
 </LinearLayout>
