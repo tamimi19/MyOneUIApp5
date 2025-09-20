@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
     <!-- استخدام الثيم الرسمي من مكتبة OneUI Design -->
-    <!-- لا حاجة لتعريف ثيم مخصص - الثيم موجود في المكتبة -->
+    <!-- لا نحتاج لإنشاء ثيمات مخصصة لأن المكتبة توفر كل ما نحتاجه -->
+    
+    <!-- تخصيصات إضافية للنصوص والأبعاد فقط -->
+    <style name="OneUICustomTextAppearance" parent="TextAppearance.AppCompat">
+        <!-- يتم تطبيق الثيم الأساسي تلقائياً من مكتبة OneUI -->
+    </style>
+
 </resources>
