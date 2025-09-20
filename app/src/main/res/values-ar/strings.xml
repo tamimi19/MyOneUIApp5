@@ -12,66 +12,64 @@
     <string name="notifications">الإشعارات</string>
     <string name="notifications_settings">إعدادات الإشعارات</string>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- الشاشة الرئيسية -->
     <string name="main_item">عنصر رئيسي</string>
     <string name="welcome_message">مرحباً بك في تطبيق OneUI</string>
 
     <!-- عناصر القائمة -->
     <string name="list_item_title">عنوان عنصر القائمة</string>
-    <string name="list_item_description">هذا وصف لعنصر القائمة</string>
+    <string name="list_item_description">هذا وصف لعنصر القائمة مع تفاصيل إضافية</string>
+    <string name="list_item_icon_description">أيقونة عنصر القائمة</string>
+    <string name="list_item_chevron_description">انتقل إلى تفاصيل العنصر</string>
+
+    <!-- درج التنقل -->
+    <string name="drawer_item_icon_description">أيقونة عنصر التنقل</string>
+    <string name="drawer_item_arrow_description">سهم التنقل</string>
 
     <!-- الإعدادات -->
     <string name="language">اللغة</string>
-    <string name="language_summary">اختر لغة التطبيق</string>
+    <string name="language_english">الإنجليزية</string>
     <string name="language_arabic">العربية</string>
-    <string name="language_english">English</string>
-    
     <string name="theme">المظهر</string>
-    <string name="theme_summary">اختر مظهر التطبيق</string>
     <string name="theme_light">المظهر الفاتح</string>
     <string name="theme_dark">المظهر الداكن</string>
-    
-    <string name="notifications_title">الإشعارات</string>
-    <string name="notifications_summary">إدارة إعدادات الإشعارات</string>
+    <string name="notification_settings">إعدادات الإشعارات</string>
 
-    <!-- إمكانية الوصول -->
-    <string name="drawer_item_icon_description">أيقونة عنصر التنقل</string>
-    <string name="drawer_item_arrow_description">سهم التنقل</string>
-    <string name="list_item_icon_description">أيقونة عنصر القائمة</string>
-    <string name="list_item_chevron_description">سهم اختيار العنصر</string>
+    <!-- مفاتيح التفضيلات -->
+    <string name="pref_language_key">language</string>
+    <string name="pref_theme_key">theme</string>
+    <string name="pref_notifications_key">notifications</string>
 
-    <!-- رأس الدرج -->
-    <string name="drawer_open">فتح درج التنقل</string>
-    <string name="drawer_close">إغلاق درج التنقل</string>
+    <!-- ملخصات التفضيلات -->
+    <string name="language_summary">اختر لغة التطبيق</string>
+    <string name="theme_summary">اختر بين المظهر الفاتح والداكن</string>
+    <string name="notifications_summary">تكوين تفضيلات الإشعارات</string>
+
+    <!-- الفئات -->
+    <string name="category_general">عام</string>
+    <string name="category_appearance">المظهر</string>
+    <string name="category_notifications">الإشعارات</string>
+
+    <!-- الرسائل -->
+    <string name="language_changed">تم تغيير اللغة بنجاح</string>
+    <string name="theme_changed">تم تغيير المظهر بنجاح</string>
+    <string name="restart_required">ستصبح التغييرات فعالة بعد إعادة التشغيل</string>
+
+    <!-- أوصاف المحتوى -->
+    <string name="menu_button">زر القائمة</string>
+    <string name="back_button">زر العودة</string>
+    <string name="collapse_toolbar">طي شريط الأدوات</string>
+    <string name="expand_toolbar">توسيع شريط الأدوات</string>
+
+    <!-- رسائل الخطأ -->
+    <string name="error_general">حدث خطأ</string>
+    <string name="error_network">خطأ في الاتصال بالشبكة</string>
+    <string name="error_loading">خطأ في التحميل</string>
 
     <!-- الإجراءات -->
-    <string name="action_settings">الإعدادات</string>
-    <string name="action_back">رجوع</string>
-    
-    <!-- الرسائل -->
-    <string name="loading">جارٍ التحميل…</string>
-    <string name="error_message">حدث خطأ</string>
-    <string name="retry">إعادة المحاولة</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_ok">موافق</string>
+    <string name="action_retry">إعادة المحاولة</string>
 
-    <!-- مصفوفات اللغة -->
-    <string-array name="language_entries">
-        <item>@string/language_english</item>
-        <item>@string/language_arabic</item>
-    </string-array>
-    
-    <string-array name="language_values">
-        <item>en</item>
-        <item>ar</item>
-    </string-array>
-
-    <!-- مصفوفات المظهر -->
-    <string-array name="theme_entries">
-        <item>@string/theme_light</item>
-        <item>@string/theme_dark</item>
-    </string-array>
-    
-    <string-array name="theme_values">
-        <item>light</item>
-        <item>dark</item>
-    </string-array>
 </resources>
