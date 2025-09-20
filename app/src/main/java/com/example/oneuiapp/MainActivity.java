@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // إعداد الدرج مع الأيقونات المناسبة
         navigationView.getMenu().clear();
         navigationView.getMenu().add(0, R.id.nav_home, 0, R.string.home)
-                .setIcon(R.drawable.ic_home);
+                .setIcon(R.drawable.ic_oui_drawer);
         navigationView.getMenu().add(0, R.id.nav_scroll_list, 0, R.string.scroll_screen)
-                .setIcon(R.drawable.ic_list);
+                .setIcon(R.drawable.ic_oui_list);
         navigationView.getMenu().add(0, R.id.nav_settings, 0, R.string.settings)
-                .setIcon(R.drawable.ic_settings);
+                .setIcon(R.drawable.ic_oui_settings_outline);
         navigationView.getMenu().add(0, R.id.nav_notifications, 0, R.string.notifications)
-                .setIcon(R.drawable.ic_notifications);
+                .setIcon(R.drawable.ic_oui_notification);
     }
 
     private void setupCollapsingToolbar() {
