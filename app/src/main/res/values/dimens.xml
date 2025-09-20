@@ -1,78 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <!-- App Bar and Toolbar Dimensions -->
+    <!-- App Bar Height for CollapsingToolbarLayout -->
     <dimen name="app_bar_height">280dp</dimen>
-    <dimen name="expanded_title_size">32sp</dimen>
-    <dimen name="collapsed_title_size">20sp</dimen>
     
-    <!-- Title Margins for CollapsingToolbarLayout -->
-    <dimen name="expanded_title_margin_horizontal">24dp</dimen>
-    <dimen name="expanded_title_margin_bottom">16dp</dimen>
-    
-    <!-- Navigation Drawer Dimensions -->
+    <!-- Navigation Drawer Width -->
     <dimen name="navigation_drawer_width">320dp</dimen>
-    <dimen name="nav_header_height">176dp</dimen>
     
-    <!-- Drawer Header Dimensions -->
-    <dimen name="drawer_header_padding_horizontal">24dp</dimen>
-    <dimen name="drawer_header_padding_top">48dp</dimen>
-    <dimen name="drawer_header_padding_bottom">16dp</dimen>
-    <dimen name="drawer_header_icon_size">64dp</dimen>
-    <dimen name="drawer_header_icon_margin_bottom">16dp</dimen>
-    <dimen name="drawer_header_title_margin_bottom">4dp</dimen>
-    
-    <!-- Drawer Item Dimensions -->
-    <dimen name="drawer_item_height">56dp</dimen>
-    <dimen name="drawer_item_padding_horizontal">24dp</dimen>
-    <dimen name="drawer_item_icon_size">24dp</dimen>
-    <dimen name="drawer_item_icon_margin_end">32dp</dimen>
-    <dimen name="drawer_item_arrow_size">20dp</dimen>
-    <dimen name="drawer_item_arrow_margin_start">8dp</dimen>
-    
-    <!-- List Item Dimensions -->
-    <dimen name="list_item_height">72dp</dimen>
-    <dimen name="list_item_padding_horizontal">16dp</dimen>
-    <dimen name="list_item_padding_vertical">12dp</dimen>
-    <dimen name="list_item_icon_size">40dp</dimen>
-    <dimen name="list_item_icon_margin_end">16dp</dimen>
-    <dimen name="list_item_description_margin_top">4dp</dimen>
-    <dimen name="list_item_chevron_size">24dp</dimen>
-    <dimen name="list_item_chevron_margin_start">8dp</dimen>
-    
-    <!-- Content Padding -->
+    <!-- Content Spacing -->
     <dimen name="content_padding_top">16dp</dimen>
-    <dimen name="list_padding_horizontal">0dp</dimen>
-    <dimen name="list_padding_top">8dp</dimen>
-    <dimen name="list_padding_bottom">16dp</dimen>
     <dimen name="bottom_spacing">48dp</dimen>
-    
-    <!-- Settings Padding -->
-    <dimen name="settings_padding_horizontal">0dp</dimen>
-    <dimen name="settings_padding_bottom">16dp</dimen>
-    
-    <!-- Text Sizes -->
-    <dimen name="oneui_drawer_header_title_size">20sp</dimen>
-    <dimen name="oneui_drawer_header_subtitle_size">14sp</dimen>
-    <dimen name="oneui_drawer_item_text_size">16sp</dimen>
-    <dimen name="oneui_list_item_title_size">16sp</dimen>
-    <dimen name="oneui_list_item_description_size">14sp</dimen>
-    
-    <!-- Card and Elevation -->
-    <dimen name="card_corner_radius">12dp</dimen>
-    <dimen name="card_elevation">2dp</dimen>
-    <dimen name="card_margin">8dp</dimen>
-    
-    <!-- Button Dimensions -->
-    <dimen name="button_height">48dp</dimen>
-    <dimen name="button_corner_radius">24dp</dimen>
-    <dimen name="button_padding_horizontal">24dp</dimen>
-    
-    <!-- Minimum Touch Target -->
-    <dimen name="min_touch_target_size">48dp</dimen>
-    
-    <!-- Status Bar and System UI -->
-    <dimen name="status_bar_height">24dp</dimen>
-    <dimen name="navigation_bar_height">48dp</dimen>
-    
+
 </resources>
