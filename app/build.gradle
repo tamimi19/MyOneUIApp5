@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'OneUIApp'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "OneUIApp"
+        minSdk 23
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // إضافة packagingOptions لحل تضارب المساحات بين picker libraries
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+            exclude 'META-INF/DEPENDENCIES'
+            exclude 'META-INF/LICENSE'
+            exclude 'META-INF/LICENSE.txt'
+            exclude 'META-INF/NOTICE'
+            exclude 'META-INF/NOTICE.txt'
+        }
+    }
+}
+
+// إزالة مكتبات Google الأصلية - مطلوب للعمل مع SESL
+configurations.all {
+    exclude group: 'androidx.appcompat', module: 'appcompat'
+    exclude group: 'androidx.core', module: 'core'
+    exclude group: 'com.google.android.material', module: 'material'
+    exclude group: 'androidx.recyclerview', module: 'recyclerview'
+    exclude group: 'androidx.coordinatorlayout', module: 'coordinatorlayout'
+    exclude group: 'androidx.swiperefreshlayout', module: 'swiperefreshlayout'
+    exclude group: 'androidx.preference', module: 'preference'
+    exclude group: 'androidx.drawerlayout', module: 'drawerlayout'
+    exclude group: 'androidx.viewpager2', module: 'viewpager2'
+    exclude group: 'androidx.fragment', module: 'fragment'
+    exclude group: 'androidx.customview', module: 'customview'
+}
+
+dependencies {
+    // OneUI Core Libraries (SESL) - الطبقة الأساسية التي تحل محل مكتبات Google
+    implementation 'io.github.oneuiproject.sesl:appcompat:1.4.0'
+    implementation 'io.github.oneuiproject.sesl:material:1.5.0'
+    implementation 'io.github.oneuiproject.sesl:coordinatorlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:drawerlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:recyclerview:1.4.1'
+    implementation 'io.github.oneuiproject.sesl:preference:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:swiperefreshlayout:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:viewpager2:1.1.0'
+    implementation 'io.github.oneuiproject.sesl:core:1.3.0'
+    implementation 'io.github.oneuiproject.sesl:customview:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:fragment:1.0.0'
+    
+    
+    // OneUI Design Library - الطبقة العليا للمكونات المخصصة
+    implementation 'io.github.oneuiproject:design:1.2.6'
+    
+    
+    // مكتبات Samsung
+    implementation 'io.github.oneuiproject.sesl:indexscroll:1.0.3'
+    implementation 'io.github.oneuiproject.sesl:picker-basic:1.2.0'
+    implementation 'io.github.oneuiproject.sesl:apppickerview:1.0.0'
+    
+    
+    // أيقونات OneUI
+    implementation 'io.github.oneuiproject:icons:1.1.0'
+    
+
+    // مكتبات AndroidX المتوافقة - هذه لا تتعارض مع sesl
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+}
