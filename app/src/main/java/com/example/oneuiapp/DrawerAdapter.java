@@ -10,137 +10,155 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerViewHolder> {
 
-    private final Context context;
-    private final List<DrawerItem> drawerItems;
-    private OnDrawerItemClickListener clickListener;
+    private Context context;
+    private List<DrawerItem> drawerItems;
+    private OnDrawerItemClickListener itemClickListener;
 
     public interface OnDrawerItemClickListener {
-        void onDrawerItemClick(DrawerItem item, int position);
+        void onItemClick(DrawerItem item, int position);
     }
 
-    public DrawerAdapter(Context context, List<DrawerItem> drawerItems) {
+    public DrawerAdapter(Context context) {
         this.context = context;
-        this.drawerItems = drawerItems;
+        this.drawerItems = new ArrayList<>();
+        initializeDrawerItems();
     }
 
-    public void setOnDrawerItemClickListener(OnDrawerItemClickListener listener) {
-        this.clickListener = listener;
+    private void initializeDrawerItems() {
+        drawerItems.clear();
+        
+        drawerItems.add(new DrawerItem(
+            R.drawable.ic_home,
+            context.getString(R.string.home),
+            DrawerItem.ITEM_TYPE_HOME
+        ));
+        
+        drawerItems.add(new DrawerItem(
+            R.drawable.ic_list,
+            context.getString(R.string.scroll_screen),
+            DrawerItem.ITEM_TYPE_SCROLL_LIST
+        ));
+        
+        drawerItems.add(new DrawerItem(
+            R.drawable.ic_settings,
+            context.getString(R.string.settings),
+            DrawerItem.ITEM_TYPE_SETTINGS
+        ));
+        
+        drawerItems.add(new DrawerItem(
+            R.drawable.ic_notifications,
+            context.getString(R.string.notifications),
+            DrawerItem.ITEM_TYPE_NOTIFICATIONS
+        ));
+    }
+
+    public void setOnItemClickListener(OnDrawerItemClickListener listener) {
+        this.itemClickListener = listener;
+    }
+
+    public void updateLanguage() {
+        initializeDrawerItems();
+        notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public DrawerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.drawer_item, parent, false);
-        return new DrawerViewHolder(view);
+        View itemView = LayoutInflater.from(context).inflate(R.layout.drawer_item, parent, false);
+        return new DrawerViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull DrawerViewHolder holder, int position) {
         DrawerItem item = drawerItems.get(position);
-        
-        holder.iconImageView.setImageResource(item.getIconResource());
-        holder.textView.setText(item.getTitle());
-        
-        if (item.hasArrow()) {
-            holder.arrowImageView.setVisibility(View.VISIBLE);
-        } else {
-            holder.arrowImageView.setVisibility(View.GONE);
-        }
-        
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (clickListener != null) {
-                    int adapterPosition = holder.getAdapterPosition();
-                    if (adapterPosition != RecyclerView.NO_POSITION) {
-                        clickListener.onDrawerItemClick(item, adapterPosition);
-                    }
-                }
-            }
-        });
-
-        holder.itemView.setSelected(item.isSelected());
+        holder.bind(item, position);
     }
 
     @Override
     public int getItemCount() {
-        return drawerItems != null ? drawerItems.size() : 0;
+        return drawerItems.size();
     }
 
-    public void updateSelectedItem(int newSelectedPosition) {
-        for (int i = 0; i < drawerItems.size(); i++) {
-            drawerItems.get(i).setSelected(i == newSelectedPosition);
-        }
-        notifyDataSetChanged();
-    }
-
-    public static class DrawerViewHolder extends RecyclerView.ViewHolder {
+    public class DrawerViewHolder extends RecyclerView.ViewHolder {
         
-        final ImageView iconImageView;
-        final TextView textView;
-        final ImageView arrowImageView;
+        private ImageView iconImageView;
+        private TextView textView;
+        private ImageView arrowImageView;
 
         public DrawerViewHolder(@NonNull View itemView) {
             super(itemView);
             iconImageView = itemView.findViewById(R.id.drawer_item_icon);
             textView = itemView.findViewById(R.id.drawer_item_text);
             arrowImageView = itemView.findViewById(R.id.drawer_item_arrow);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION && itemClickListener != null) {
+                        itemClickListener.onItemClick(drawerItems.get(position), position);
+                    }
+                }
+            });
+        }
+
+        public void bind(DrawerItem item, int position) {
+            iconImageView.setImageResource(item.getIconResource());
+            textView.setText(item.getTitle());
+            
+            if (item.hasArrow()) {
+                arrowImageView.setVisibility(View.VISIBLE);
+            } else {
+                arrowImageView.setVisibility(View.GONE);
+            }
+
+            itemView.setContentDescription(
+                context.getString(R.string.drawer_item_icon_description) + ": " + item.getTitle()
+            );
         }
     }
 
     public static class DrawerItem {
-        private final String title;
-        private final int iconResource;
-        private final int id;
-        private boolean selected;
-        private boolean hasArrow;
+        public static final int ITEM_TYPE_HOME = 1;
+        public static final int ITEM_TYPE_SCROLL_LIST = 2;
+        public static final int ITEM_TYPE_SETTINGS = 3;
+        public static final int ITEM_TYPE_NOTIFICATIONS = 4;
 
-        public DrawerItem(int id, String title, int iconResource) {
-            this.id = id;
-            this.title = title;
+        private int iconResource;
+        private String title;
+        private int itemType;
+        private boolean showArrow;
+
+        public DrawerItem(int iconResource, String title, int itemType) {
             this.iconResource = iconResource;
-            this.selected = false;
-            this.hasArrow = false;
-        }
-
-        public DrawerItem(int id, String title, int iconResource, boolean hasArrow) {
-            this.id = id;
             this.title = title;
-            this.iconResource = iconResource;
-            this.selected = false;
-            this.hasArrow = hasArrow;
-        }
-
-        public String getTitle() {
-            return title;
+            this.itemType = itemType;
+            this.showArrow = (itemType == ITEM_TYPE_SCROLL_LIST || itemType == ITEM_TYPE_SETTINGS);
         }
 
         public int getIconResource() {
             return iconResource;
         }
 
-        public int getId() {
-            return id;
+        public String getTitle() {
+            return title;
         }
 
-        public boolean isSelected() {
-            return selected;
-        }
-
-        public void setSelected(boolean selected) {
-            this.selected = selected;
+        public int getItemType() {
+            return itemType;
         }
 
         public boolean hasArrow() {
-            return hasArrow;
+            return showArrow;
         }
 
-        public void setHasArrow(boolean hasArrow) {
-            this.hasArrow = hasArrow;
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
-      }
+}
