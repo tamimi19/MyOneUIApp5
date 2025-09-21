@@ -51,7 +51,9 @@ configurations.all {
     exclude group: 'androidx.viewpager2', module: 'viewpager2'
     exclude group: 'androidx.fragment', module: 'fragment'
     exclude group: 'androidx.customview', module: 'customview'
-    exclude group: 'io.github.oneuiproject.sesl', module: 'picker-color'
+    exclude group: 'androidx.viewpager', module: 'viewpager'
+    exclude group: 'androidx.picker-color', module: 'picker-color'
+    exclude group: 'androidx.picker-basic', module: 'picker-basic'
 }
 
 dependencies {
@@ -77,6 +79,7 @@ dependencies {
     implementation 'io.github.oneuiproject.sesl:picker-basic:1.2.0'
     implementation 'io.github.oneuiproject.sesl:apppickerview:1.0.0'
     implementation 'io.github.oneuiproject.sesl:customview:1.0.0'
+    implementation 'io.github.oneuiproject.sesl:picker-color:1.1.0'
     
     
     // أيقونات OneUI
