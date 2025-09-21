@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 
+         تعريف الأنماط المستخدمة لتنسيق عنوان ToolBar الموسّع (CollapsingToolbarLayout).
+         حسب وثائق Android، العنوان يكون أكبر عند التوسع (expanded) وأصغر عند الانهيار (collapsed)3.
+    -->
+    <style name="OneUIExpandedTitleTextAppearance" parent="@style/TextAppearance.AppCompat.Display1">
+        <item name="android:textSize">26sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="OneUICollapsedTitleTextAppearance" parent="@style/TextAppearance.AppCompat.Title">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>
