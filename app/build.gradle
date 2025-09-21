@@ -52,6 +52,7 @@ configurations.all {
     exclude group: 'androidx.fragment', module: 'fragment'
     exclude group: 'androidx.customview', module: 'customview'
     exclude group: 'androidxcolorpicker', module: 'androidxcolorpicker'
+    exclude group: 'io.github.long76', module: 'androidxcolorpicker'
 }
 
 dependencies {
