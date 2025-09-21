@@ -37,7 +37,7 @@
         android:layout_marginStart="@dimen/drawer_item_arrow_margin_start"
         android:contentDescription="@string/drawer_item_arrow_description"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_arrow_forward"
+        android:src="@drawable/ic_oui_arrow_right"
         android:visibility="gone"
         app:tint="?attr/colorOnSurface"
         android:alpha="0.6" />
