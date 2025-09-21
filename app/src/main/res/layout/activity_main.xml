@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
-            android:theme="@style/Widget.Design.AppBarLayout"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -31,13 +30,8 @@
                 app:contentScrim="?attr/colorPrimary"
                 app:statusBarScrim="?attr/colorPrimaryVariant"
                 app:extendedTitleEnabled="true"
-                app:extendedTitleTextAppearance="@style/OneUIExpandedTitleTextAppearance"
-                app:collapsedTitleTextAppearance="@style/OneUICollapsedTitleTextAppearance"
                 app:expandedTitleGravity="bottom|center_horizontal"
                 app:collapsedTitleGravity="top|start"
-                app:expandedTitleMarginStart="@dimen/expanded_title_margin_horizontal"
-                app:expandedTitleMarginEnd="@dimen/expanded_title_margin_horizontal"
-                app:expandedTitleMarginBottom="@dimen/expanded_title_margin_bottom"
                 app:toolbarId="@id/toolbar">
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -72,9 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    android:paddingStart="@dimen/list_padding_horizontal"
-                    android:paddingEnd="@dimen/list_padding_horizontal"
-                    android:paddingBottom="@dimen/list_padding_bottom"
+                    android:padding="16dp"
                     android:clipToPadding="false"
                     tools:listitem="@layout/list_item" />
 
@@ -98,8 +90,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
         app:itemIconTint="?attr/colorOnSurface"
-        app:itemTextColor="?attr/colorOnSurface"
-        app:itemBackground="@drawable/drawer_item_background"
-        style="@style/Widget.Design.NavigationView" />
+        app:itemTextColor="?attr/colorOnSurface" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
