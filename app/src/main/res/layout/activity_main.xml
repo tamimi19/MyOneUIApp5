@@ -19,6 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
+            android:theme="@style/Widget.Design.AppBarLayout"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -26,6 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
+                style="@style/Widget.Design.CollapsingToolbar"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
                 app:contentScrim="?attr/colorPrimary"
                 app:statusBarScrim="?attr/colorPrimaryVariant"
