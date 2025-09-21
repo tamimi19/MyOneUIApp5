@@ -34,7 +34,7 @@ public class DrawerAdapter extends RecyclerView.Adapter<DrawerAdapter.DrawerView
         drawerItems.clear();
         
         drawerItems.add(new DrawerItem(
-            R.drawable.ic_oui_drawer_outline,
+            R.drawable.ic_oui_drawer,
             context.getString(R.string.home),
             DrawerItem.ITEM_TYPE_HOME
         ));
