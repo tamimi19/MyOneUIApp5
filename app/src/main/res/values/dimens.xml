@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+
     <!-- App Bar Height for CollapsingToolbarLayout -->
     <dimen name="app_bar_height">280dp</dimen>
-    
+
     <!-- Navigation Drawer Width -->
+    <!-- أقصى عرض للدرج (لتلبية توصيات التصميم بـ ≤320dp على الهواتف) -->
     <dimen name="navigation_drawer_width">320dp</dimen>
-    
+
     <!-- Content Spacing -->
     <dimen name="content_padding_top">16dp</dimen>
     <dimen name="bottom_spacing">48dp</dimen>
+
+    <!-- RecyclerView item padding -->
+    <dimen name="list_padding_horizontal">16dp</dimen>
+    <dimen name="list_padding_bottom">16dp</dimen>
+
+    <!-- CollapsingToolbar expanded title margins -->
+    <dimen name="expanded_title_margin_horizontal">16dp</dimen>
+    <dimen name="expanded_title_margin_bottom">32dp</dimen>
 
 </resources>
