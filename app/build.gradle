@@ -54,6 +54,7 @@ configurations.all {
     exclude group: 'androidx.viewpager', module: 'viewpager'
     exclude group: 'androidx.picker-color', module: 'picker-color'
     exclude group: 'androidx.picker-basic', module: 'picker-basic'
+    exclude group: 'androidx.apppickerview', module: 'apppickerview'
 }
 
 dependencies {
