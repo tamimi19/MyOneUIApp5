@@ -55,6 +55,7 @@ configurations.all {
     exclude group: 'androidx.picker-color', module: 'picker-color'
     exclude group: 'androidx.picker-basic', module: 'picker-basic'
     exclude group: 'androidx.apppickerview', module: 'apppickerview'
+    exclude group: 'androidx.picker', module: 'picker'
 }
 
 dependencies {
