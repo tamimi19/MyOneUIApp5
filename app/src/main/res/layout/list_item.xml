@@ -58,7 +58,7 @@
         android:layout_marginStart="8dp"
         android:contentDescription="@string/list_item_chevron_description"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_oui_chevron_right"
+        android:src="@drawable/ic_oui_arrow_right"
         android:visibility="visible"
         app:tint="?attr/colorOnSurface"
         android:alpha="0.5" />
