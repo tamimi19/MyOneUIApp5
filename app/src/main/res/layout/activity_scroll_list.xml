@@ -51,6 +51,6 @@
         android:scrollbars="vertical"
         android:fadeScrollbars="true"
         android:scrollbarStyle="outsideOverlay"
-        tools:listitem="@layout/scroll_list_item" />
+        tools:listitem="@layout/list_item" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
