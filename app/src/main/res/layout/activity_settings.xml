@@ -12,7 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/app_bar_height"
         android:fitsSystemWindows="true"
-        android:theme="@style/Widget.Design.AppBarLayout"
         app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -24,13 +23,8 @@
             app:contentScrim="?attr/colorPrimary"
             app:statusBarScrim="?attr/colorPrimaryVariant"
             app:extendedTitleEnabled="true"
-            app:extendedTitleTextAppearance="@style/OneUIExpandedTitleTextAppearance"
-            app:collapsedTitleTextAppearance="@style/OneUICollapsedTitleTextAppearance"
             app:expandedTitleGravity="bottom|center_horizontal"
             app:collapsedTitleGravity="top|start"
-            app:expandedTitleMarginStart="@dimen/expanded_title_margin_horizontal"
-            app:expandedTitleMarginEnd="@dimen/expanded_title_margin_horizontal"
-            app:expandedTitleMarginBottom="@dimen/expanded_title_margin_bottom"
             app:toolbarId="@id/toolbar">
 
             <com.google.android.material.appbar.MaterialToolbar
@@ -39,7 +33,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_arrow_back"
+                app:navigationIcon="@drawable/ic_oui_arrow_back"
                 app:titleTextColor="?attr/colorOnPrimary" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -64,9 +58,7 @@
                 android:id="@+id/settings_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/settings_padding_horizontal"
-                android:paddingEnd="@dimen/settings_padding_horizontal"
-                android:paddingBottom="@dimen/settings_padding_bottom" />
+                android:padding="16dp" />
 
             <!-- مساحة إضافية في الأسفل -->
             <View
