@@ -33,7 +33,7 @@
                 android:layout_height="?attr/actionBarSize"
                 android:background="@android:color/transparent"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_oui_arrow_back"
+                app:navigationIcon="@drawable/ic_oui_back"
                 app:titleTextColor="?attr/colorOnPrimary" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
