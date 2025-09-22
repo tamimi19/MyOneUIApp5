@@ -5,7 +5,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
-import androidx.preference.SwitchPreferenceCompat;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -57,42 +56,24 @@ public class SettingsActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
     }
 
     private void setupCollapsingToolbar() {
         collapsingToolbar.setTitle(getString(R.string.settings));
-        collapsingToolbar.setExtendedTitleEnabled(true);
+        
+        // Enable OneUI specific features using available SESL methods
         collapsingToolbar.seslEnableFadeToolbarTitle(true);
         
+        // Monitor collapse state for any additional UI adjustments
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                int maxScroll = appBarLayout.getTotalScrollRange();
-                float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-                updateTitlePosition(percentage);
+                // Optional: Add any custom behavior based on collapse state
+                // The title animation is handled automatically by CollapsingToolbarLayout
             }
         });
-    }
-
-    private void updateTitlePosition(float percentage) {
-        float expandedTitleSize = getResources().getDimension(R.dimen.expanded_title_size);
-        float collapsedTitleSize = getResources().getDimension(R.dimen.collapsed_title_size);
-        
-        float currentSize = expandedTitleSize - ((expandedTitleSize - collapsedTitleSize) * percentage);
-        collapsingToolbar.setExpandedTitleTextSize(currentSize);
-        
-        if (percentage < 0.5f) {
-            collapsingToolbar.setExpandedTitleGravity(android.view.Gravity.BOTTOM | android.view.Gravity.CENTER_HORIZONTAL);
-        } else {
-            if (languageManager.isRtlLanguage()) {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.END);
-            } else {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.START);
-            }
-        }
     }
 
     @Override
@@ -104,6 +85,15 @@ public class SettingsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Recreate activity if theme or language changed
+        if (themeManager.hasThemeChanged() || languageManager.hasLanguageChanged()) {
+            recreate();
+        }
+    }
+
     public static class SettingsFragment extends PreferenceFragmentCompat {
         
         private ThemeManager themeManager;
@@ -111,87 +101,79 @@ public class SettingsActivity extends AppCompatActivity {
         
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.preferences, rootKey);
+            // Create preferences programmatically since XML file may not exist
+            getPreferenceManager().setSharedPreferencesName("app_preferences");
             
             themeManager = new ThemeManager(requireContext());
             languageManager = new LanguageManager(requireContext());
             
-            setupLanguagePreference();
-            setupThemePreference();
-            setupNotificationsPreference();
+            createPreferencesScreen();
         }
         
-        private void setupLanguagePreference() {
-            ListPreference languagePreference = findPreference("language");
-            if (languagePreference != null) {
-                languagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        String selectedLanguage = (String) newValue;
-                        languageManager.setLanguage(selectedLanguage);
-                        
-                        if (getActivity() != null) {
-                            getActivity().recreate();
-                        }
-                        return true;
+        private void createPreferencesScreen() {
+            // Create language preference
+            ListPreference languagePreference = new ListPreference(requireContext());
+            languagePreference.setKey("language");
+            languagePreference.setTitle(getString(R.string.language));
+            languagePreference.setSummary(getString(R.string.language_summary));
+            languagePreference.setEntries(new String[]{
+                getString(R.string.language_english),
+                getString(R.string.language_arabic)
+            });
+            languagePreference.setEntryValues(new String[]{"en", "ar"});
+            languagePreference.setValue(languageManager.getCurrentLanguage());
+            languagePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String selectedLanguage = (String) newValue;
+                    languageManager.setLanguage(selectedLanguage);
+                    
+                    if (getActivity() != null) {
+                        getActivity().recreate();
                     }
-                });
-                
-                String currentLanguage = languageManager.getCurrentLanguage();
-                languagePreference.setValue(currentLanguage);
-                updateLanguageSummary(languagePreference, currentLanguage);
-            }
-        }
-        
-        private void setupThemePreference() {
-            ListPreference themePreference = findPreference("theme");
-            if (themePreference != null) {
-                themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object newValue) {
-                        String selectedTheme = (String) newValue;
-                        themeManager.setTheme(selectedTheme);
-                        
-                        if (getActivity() != null) {
-                            getActivity().recreate();
-                        }
-                        return true;
+                    return true;
+                }
+            });
+            getPreferenceScreen().addPreference(languagePreference);
+            
+            // Create theme preference
+            ListPreference themePreference = new ListPreference(requireContext());
+            themePreference.setKey("theme");
+            themePreference.setTitle(getString(R.string.theme));
+            themePreference.setSummary(getString(R.string.theme_summary));
+            themePreference.setEntries(new String[]{
+                getString(R.string.theme_light),
+                getString(R.string.theme_dark)
+            });
+            themePreference.setEntryValues(new String[]{"light", "dark"});
+            themePreference.setValue(themeManager.getCurrentTheme());
+            themePreference.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String selectedTheme = (String) newValue;
+                    themeManager.setTheme(selectedTheme);
+                    
+                    if (getActivity() != null) {
+                        getActivity().recreate();
                     }
-                });
-                
-                String currentTheme = themeManager.getCurrentTheme();
-                themePreference.setValue(currentTheme);
-                updateThemeSummary(themePreference, currentTheme);
-            }
-        }
-        
-        private void setupNotificationsPreference() {
-            Preference notificationsPreference = findPreference("notifications");
-            if (notificationsPreference != null) {
-                notificationsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-                    @Override
-                    public boolean onPreferenceClick(Preference preference) {
-                        Toast.makeText(getContext(), R.string.notifications_settings, Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
-            }
-        }
-        
-        private void updateLanguageSummary(ListPreference preference, String value) {
-            if ("ar".equals(value)) {
-                preference.setSummary(getString(R.string.language_arabic));
-            } else {
-                preference.setSummary(getString(R.string.language_english));
-            }
-        }
-        
-        private void updateThemeSummary(ListPreference preference, String value) {
-            if ("dark".equals(value)) {
-                preference.setSummary(getString(R.string.theme_dark));
-            } else {
-                preference.setSummary(getString(R.string.theme_light));
-            }
+                    return true;
+                }
+            });
+            getPreferenceScreen().addPreference(themePreference);
+            
+            // Create notifications preference
+            Preference notificationsPreference = new Preference(requireContext());
+            notificationsPreference.setKey("notifications");
+            notificationsPreference.setTitle(getString(R.string.notifications));
+            notificationsPreference.setSummary(getString(R.string.notifications_summary));
+            notificationsPreference.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    Toast.makeText(getContext(), R.string.notifications_settings, Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+            });
+            getPreferenceScreen().addPreference(notificationsPreference);
         }
     }
 }
