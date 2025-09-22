@@ -77,8 +77,3 @@
     <string name="action_retry">إعادة المحاولة</string>
 
     <!-- خاص بـ OneUI -->
-    <string name="expand_title">توسيع العنوان</string>
-    <string name="collapse_title">طي العنوان</string>
-    <string name="toolbar_scroll_behavior">سلوك تمرير شريط الأدوات</string>
-
-</resources>
