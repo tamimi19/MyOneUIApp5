@@ -111,5 +111,8 @@
     <string name="loading_items">Loading items...</string>
     <string name="items_loaded">Items loaded successfully</string>
     <string name="no_items_found">No items found</string>
+    
+    <!-- Settings Related -->
+    <string name="current_selection">Currently: %1$s</string>
 
 </resources>
