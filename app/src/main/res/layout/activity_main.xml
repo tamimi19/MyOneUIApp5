@@ -42,7 +42,7 @@
                     android:layout_height="?attr/actionBarSize"
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin"
-                    app:navigationIcon="@drawable/ic_oui_drawer"
+                    app:navigationIcon="@drawable/ic_menu"
                     app:titleTextColor="?attr/colorOnPrimary" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -70,7 +70,7 @@
                     android:nestedScrollingEnabled="false"
                     android:padding="16dp"
                     android:clipToPadding="false"
-                    tools:listitem="@layout/list_item" />
+                    tools:listitem="@layout/main_item" />
 
                 <!-- مساحة إضافية في الأسفل -->
                 <View
@@ -83,15 +83,29 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- درج التنقل -->
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+    <!-- درج التنقل بـ RecyclerView بدلاً من NavigationView -->
+    <LinearLayout
+        android:id="@+id/drawer_container"
         android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/drawer_header"
-        app:itemIconTint="?attr/colorOnSurface"
-        app:itemTextColor="?attr/colorOnSurface" />
+        android:orientation="vertical">
+
+        <!-- Header للدرج -->
+        <include layout="@layout/drawer_header" />
+
+        <!-- قائمة عناصر التنقل -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/drawer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false"
+            tools:listitem="@layout/drawer_item" />
+
+    </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
