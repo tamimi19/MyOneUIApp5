@@ -53,7 +53,10 @@ configurations.all {
     exclude group: 'androidx.fragment', module: 'fragment'
     exclude group: 'androidx.customview', module: 'customview'
     exclude group: 'io.github.oneuiproject.sesl', module: 'picker-color'
+    exclude group: 'androidx.picker-basic', module: 'picker-basic'
     exclude group: 'androidx.apppickerview', module: 'apppickerview'
+    exclude group: 'androidx.indexscroll', module: 'indexscroll'
+    exclude group: 'androidx.picker', module: 'picker'
 }
 
 dependencies {
