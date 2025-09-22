@@ -20,6 +20,7 @@
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
             android:theme="@style/Widget.Design.AppBarLayout"
+            app:elevation="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -34,6 +35,9 @@
                 app:extendedTitleEnabled="true"
                 app:expandedTitleGravity="bottom|center_horizontal"
                 app:collapsedTitleGravity="top|start"
+                app:expandedTitleMarginStart="@dimen/content_padding_top"
+                app:expandedTitleMarginEnd="@dimen/content_padding_top"
+                app:expandedTitleMarginBottom="@dimen/content_padding_top"
                 app:toolbarId="@id/toolbar">
 
                 <com.google.android.material.appbar.MaterialToolbar
@@ -43,6 +47,7 @@
                     android:background="@android:color/transparent"
                     app:layout_collapseMode="pin"
                     app:navigationIcon="@drawable/ic_menu"
+                    app:navigationContentDescription="@string/navigation_drawer_open"
                     app:titleTextColor="?attr/colorOnPrimary" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -51,10 +56,12 @@
 
         <!-- المحتوى القابل للتمرير -->
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/main_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            android:fillViewport="true">
+            android:fillViewport="true"
+            android:contentDescription="@string/main_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,6 +77,9 @@
                     android:nestedScrollingEnabled="false"
                     android:padding="16dp"
                     android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="true"
+                    android:scrollbarStyle="outsideOverlay"
                     tools:listitem="@layout/main_item" />
 
                 <!-- مساحة إضافية في الأسفل -->
@@ -91,7 +101,9 @@
         android:layout_gravity="start"
         android:background="?attr/colorSurface"
         android:fitsSystemWindows="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:contentDescription="@string/drawer_content"
+        android:elevation="@dimen/drawer_elevation">
 
         <!-- Header للدرج -->
         <include layout="@layout/drawer_header" />
@@ -104,6 +116,9 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="true"
+            android:scrollbarStyle="outsideOverlay"
             tools:listitem="@layout/drawer_item" />
 
     </LinearLayout>
