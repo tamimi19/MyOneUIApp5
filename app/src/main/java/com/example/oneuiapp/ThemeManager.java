@@ -51,6 +51,8 @@ public class ThemeManager {
     }
     
     private void applyThemeMode(String themeMode) {
+        // OneUI Design library automatically handles theme switching
+        // We only need to set the AppCompatDelegate mode
         switch (themeMode) {
             case THEME_LIGHT:
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -109,5 +111,45 @@ public class ThemeManager {
     
     public void resetToSystemDefault() {
         setTheme(THEME_SYSTEM);
+    }
+    
+    /**
+     * Get the next theme in rotation order (for testing purposes)
+     */
+    public String getNextTheme() {
+        String currentTheme = getCurrentTheme();
+        switch (currentTheme) {
+            case THEME_LIGHT:
+                return THEME_DARK;
+            case THEME_DARK:
+                return THEME_SYSTEM;
+            case THEME_SYSTEM:
+            default:
+                return THEME_LIGHT;
+        }
+    }
+    
+    /**
+     * Check if dark mode is currently active based on system state
+     */
+    public boolean isCurrentlyDarkMode() {
+        int currentNightMode = context.getResources().getConfiguration().uiMode 
+                & Configuration.UI_MODE_NIGHT_MASK;
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES;
+    }
+    
+    /**
+     * Get theme mode ID for programmatic use
+     */
+    public int getThemeModeId(String themeMode) {
+        switch (themeMode) {
+            case THEME_LIGHT:
+                return AppCompatDelegate.MODE_NIGHT_NO;
+            case THEME_DARK:
+                return AppCompatDelegate.MODE_NIGHT_YES;
+            case THEME_SYSTEM:
+            default:
+                return AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM;
+        }
     }
 }
