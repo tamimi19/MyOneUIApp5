@@ -5,6 +5,10 @@ android {
     namespace 'com.example.oneuiapp'
     compileSdk 34
 
+    buildFeatures {
+        buildConfig true
+    }
+
     defaultConfig {
         applicationId "com.example.oneuiapp"
         minSdk 23
