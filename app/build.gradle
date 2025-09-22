@@ -79,10 +79,10 @@ dependencies {
     
     // مكتبات Samsung
     implementation 'io.github.oneuiproject.sesl:indexscroll:1.0.3'
-    implementation 'io.github.oneuiproject.sesl:picker-basic:1.0.37-sesl4'
+    implementation 'io.github.oneuiproject.sesl:picker-basic:1.2.0'
     implementation 'io.github.oneuiproject.sesl:apppickerview:1.0.0'
     implementation 'io.github.oneuiproject.sesl:customview:1.0.0'
-    implementation 'io.github.oneuiproject.sesl:picker-color:1.0.25-sesl4'
+    implementation 'io.github.oneuiproject.sesl:picker-color:1.0.1'
     
     
     // أيقونات OneUI
