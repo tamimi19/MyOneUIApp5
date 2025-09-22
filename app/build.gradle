@@ -49,7 +49,6 @@ android {
 
 // إزالة مكتبات Google الأصلية - مطلوب للعمل مع SESL
 configurations.all {
-    exclude group: 'io.github.oneuiproject.sesl', module: 'picker-color'
 }
 
 dependencies {
