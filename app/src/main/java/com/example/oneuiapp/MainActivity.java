@@ -9,25 +9,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.appbar.MaterialToolbar;
-import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerAdapter.OnDrawerItemClickListener {
+public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnDrawerItemClickListener {
 
     private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
+    private LinearLayout drawerContainer;
+    private RecyclerView drawerRecyclerView;
     private CollapsingToolbarLayout collapsingToolbar;
     private MaterialToolbar toolbar;
     private RecyclerView mainRecyclerView;
     private DrawerAdapter drawerAdapter;
+    private MainAdapter mainAdapter;
     private ThemeManager themeManager;
     private LanguageManager languageManager;
 
@@ -51,7 +53,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initViews() {
         drawerLayout = findViewById(R.id.drawer_layout);
-        navigationView = findViewById(R.id.navigation_view);
+        drawerContainer = findViewById(R.id.drawer_container);
+        drawerRecyclerView = findViewById(R.id.drawer_recycler_view);
         collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         toolbar = findViewById(R.id.toolbar);
         mainRecyclerView = findViewById(R.id.main_recycler_view);
@@ -67,19 +70,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(navigationView)) {
-                    drawerLayout.closeDrawer(navigationView);
+                if (drawerLayout.isDrawerOpen(drawerContainer)) {
+                    drawerLayout.closeDrawer(drawerContainer);
                 } else {
-                    drawerLayout.openDrawer(navigationView);
+                    drawerLayout.openDrawer(drawerContainer);
                 }
             }
         });
     }
 
     private void setupDrawer() {
+        // Setup RecyclerView for drawer
+        drawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        drawerRecyclerView.setHasFixedSize(true);
+        
+        // Initialize drawer adapter
         drawerAdapter = new DrawerAdapter(this);
         drawerAdapter.setOnItemClickListener(this);
-        navigationView.setNavigationItemSelectedListener(this);
+        drawerRecyclerView.setAdapter(drawerAdapter);
     }
 
     private void setupCollapsingToolbar() {
@@ -101,23 +109,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setupRecyclerView() {
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mainRecyclerView.setHasFixedSize(true);
         
-        // Create sample data for main screen
-        List<String> mainItems = new ArrayList<>();
-        for (int i = 1; i <= 20; i++) {
-            mainItems.add(getString(R.string.main_item) + " " + i);
-        }
+        // Initialize main adapter
+        mainAdapter = new MainAdapter(this);
+        mainAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String item, int position) {
+                Toast.makeText(MainActivity.this, item, Toast.LENGTH_SHORT).show();
+            }
+        });
         
-        // Note: You would need to create a simple adapter for these items
-        // MainAdapter adapter = new MainAdapter(mainItems);
-        // mainRecyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation with programmatically created menu items
-        drawerLayout.closeDrawer(navigationView);
-        return true;
+        // Generate sample data for main screen
+        mainAdapter.generateSampleData(20);
+        mainRecyclerView.setAdapter(mainAdapter);
     }
 
     @Override
@@ -138,13 +143,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, R.string.notifications, Toast.LENGTH_SHORT).show();
                 break;
         }
-        drawerLayout.closeDrawer(navigationView);
+        drawerLayout.closeDrawer(drawerContainer);
     }
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(navigationView)) {
-            drawerLayout.closeDrawer(navigationView);
+        if (drawerLayout.isDrawerOpen(drawerContainer)) {
+            drawerLayout.closeDrawer(drawerContainer);
         } else {
             super.onBackPressed();
         }
@@ -153,9 +158,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
+        // Update drawer language when returning to activity
+        if (drawerAdapter != null) {
+            drawerAdapter.updateLanguage();
+        }
+        
         // Recreate activity if theme or language changed
         if (themeManager.hasThemeChanged() || languageManager.hasLanguageChanged()) {
             recreate();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            if (drawerLayout.isDrawerOpen(drawerContainer)) {
+                drawerLayout.closeDrawer(drawerContainer);
+            } else {
+                drawerLayout.openDrawer(drawerContainer);
+            }
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
