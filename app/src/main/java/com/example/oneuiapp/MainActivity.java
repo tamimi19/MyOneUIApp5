@@ -20,19 +20,19 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, DrawerAdapter.OnDrawerItemClickListener {
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private CollapsingToolbarLayout collapsingToolbar;
     private MaterialToolbar toolbar;
     private RecyclerView mainRecyclerView;
+    private DrawerAdapter drawerAdapter;
     private ThemeManager themeManager;
     private LanguageManager languageManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // تطبيق إعدادات اللغة والثيم قبل إنشاء النشاط
         languageManager = new LanguageManager(this);
         themeManager = new ThemeManager(this);
         
@@ -61,10 +61,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_oui_drawer);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
         
-        // إعداد معالج الضغط على زر القائمة
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,99 +77,68 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void setupDrawer() {
+        drawerAdapter = new DrawerAdapter(this);
+        drawerAdapter.setOnItemClickListener(this);
         navigationView.setNavigationItemSelectedListener(this);
-        
-        // إعداد الدرج مع الأيقونات المناسبة
-        navigationView.getMenu().clear();
-        navigationView.getMenu().add(0, R.id.nav_home, 0, R.string.home)
-                .setIcon(R.drawable.ic_oui_drawer);
-        navigationView.getMenu().add(0, R.id.nav_scroll_list, 0, R.string.scroll_screen)
-                .setIcon(R.drawable.ic_oui_list);
-        navigationView.getMenu().add(0, R.id.nav_settings, 0, R.string.settings)
-                .setIcon(R.drawable.ic_oui_settings_outline);
-        navigationView.getMenu().add(0, R.id.nav_notifications, 0, R.string.notifications)
-                .setIcon(R.drawable.ic_oui_notification);
     }
 
     private void setupCollapsingToolbar() {
         collapsingToolbar.setTitle(getString(R.string.app_name));
         
-        // تمكين الميزات الخاصة بـ OneUI
-        collapsingToolbar.setExtendedTitleEnabled(true);
+        // Enable OneUI specific features using available SESL methods
         collapsingToolbar.seslEnableFadeToolbarTitle(true);
         
-        // إعداد التمرير التفاعلي للعنوان
+        // Monitor collapse state for any additional UI adjustments
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                int maxScroll = appBarLayout.getTotalScrollRange();
-                float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-                
-                // تحديث موضع ومقياس العنوان تدريجياً
-                updateTitlePosition(percentage);
+                // Optional: Add any custom behavior based on collapse state
+                // The title animation is handled automatically by CollapsingToolbarLayout
             }
         });
-    }
-
-    private void updateTitlePosition(float percentage) {
-        // تطبيق تأثير التكبير والتصغير التدريجي للعنوان كما في One UI
-        float expandedTitleSize = getResources().getDimension(R.dimen.expanded_title_size);
-        float collapsedTitleSize = getResources().getDimension(R.dimen.collapsed_title_size);
-        
-        float currentSize = expandedTitleSize - ((expandedTitleSize - collapsedTitleSize) * percentage);
-        collapsingToolbar.setExpandedTitleTextSize(currentSize);
-        
-        // تحديث موضع العنوان بناءً على نسبة التمرير
-        if (percentage < 0.5f) {
-            // في الوضع الموسع - العنوان في المنتصف
-            collapsingToolbar.setExpandedTitleGravity(android.view.Gravity.BOTTOM | android.view.Gravity.CENTER_HORIZONTAL);
-        } else {
-            // في الوضع المنهار - العنوان في الجانب
-            if (languageManager.isRtlLanguage()) {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.END);
-            } else {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.START);
-            }
-        }
     }
 
     private void setupRecyclerView() {
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         
-        // إنشاء قائمة تجريبية للواجهة الرئيسية
+        // Create sample data for main screen
         List<String> mainItems = new ArrayList<>();
-        for (int i = 1; i <= 50; i++) {
+        for (int i = 1; i <= 20; i++) {
             mainItems.add(getString(R.string.main_item) + " " + i);
         }
         
-        // يمكن استخدام محول بسيط هنا أو إنشاء محول مخصص
+        // Note: You would need to create a simple adapter for these items
         // MainAdapter adapter = new MainAdapter(mainItems);
         // mainRecyclerView.setAdapter(adapter);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-        
-        if (itemId == R.id.nav_home) {
-            // البقاء في الشاشة الرئيسية
-            Toast.makeText(this, R.string.home, Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.nav_scroll_list) {
-            // الانتقال إلى شاشة التمرير
-            Intent intent = new Intent(this, ScrollListActivity.class);
-            startActivity(intent);
-        } else if (itemId == R.id.nav_settings) {
-            // الانتقال إلى شاشة الإعدادات
-            Intent intent = new Intent(this, SettingsActivity.class);
-            startActivity(intent);
-        } else if (itemId == R.id.nav_notifications) {
-            // عرض رسالة للإشعارات
-            Toast.makeText(this, R.string.notifications, Toast.LENGTH_SHORT).show();
-        }
-        
+        // Handle navigation with programmatically created menu items
         drawerLayout.closeDrawer(navigationView);
         return true;
+    }
+
+    @Override
+    public void onItemClick(DrawerAdapter.DrawerItem item, int position) {
+        switch (item.getItemType()) {
+            case DrawerAdapter.DrawerItem.ITEM_TYPE_HOME:
+                Toast.makeText(this, R.string.home, Toast.LENGTH_SHORT).show();
+                break;
+            case DrawerAdapter.DrawerItem.ITEM_TYPE_SCROLL_LIST:
+                Intent scrollIntent = new Intent(this, ScrollListActivity.class);
+                startActivity(scrollIntent);
+                break;
+            case DrawerAdapter.DrawerItem.ITEM_TYPE_SETTINGS:
+                Intent settingsIntent = new Intent(this, SettingsActivity.class);
+                startActivity(settingsIntent);
+                break;
+            case DrawerAdapter.DrawerItem.ITEM_TYPE_NOTIFICATIONS:
+                Toast.makeText(this, R.string.notifications, Toast.LENGTH_SHORT).show();
+                break;
+        }
+        drawerLayout.closeDrawer(navigationView);
     }
 
     @Override
@@ -185,9 +153,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onResume() {
         super.onResume();
-        // إعادة تطبيق الإعدادات عند العودة للنشاط
+        // Recreate activity if theme or language changed
         if (themeManager.hasThemeChanged() || languageManager.hasLanguageChanged()) {
             recreate();
         }
     }
-                      }
+}
