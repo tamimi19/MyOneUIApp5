@@ -54,7 +54,5 @@ android {
     implementation 'com.airbnb.android:lottie:5.2.0'
     
 
-    // مكتبات AndroidX المتوافقة - هذه لا تتعارض مع sesl
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     
 }
