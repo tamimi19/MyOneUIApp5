@@ -18,6 +18,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+        debug {
+            debuggable true
+            // إضافة خاصية تسجيل الأخطاء في وضع التطوير
+            buildConfigField "boolean", "ENABLE_CRASH_LOGGING", "true"
+        }
     }
 
     compileOptions {
@@ -92,4 +97,7 @@ dependencies {
 
     // مكتبات AndroidX المتوافقة - هذه لا تتعارض مع sesl
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    
+    // إضافة مكتبة لإدارة الملفات والأذونات (اختيارية لتحسين إدارة ملفات السجل)
+    implementation 'androidx.documentfile:documentfile:1.0.1'
 }
