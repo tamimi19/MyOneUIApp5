@@ -14,6 +14,9 @@
 
     <!-- الشاشة الرئيسية -->
     <string name="main_item">عنصر رئيسي</string>
+    <string name="main_item_description">هذا وصف العنصر الرئيسي مع تفاصيل إضافية</string>
+    <string name="main_item_icon_description">أيقونة العنصر الرئيسي</string>
+    <string name="main_item_chevron_description">انتقل إلى تفاصيل العنصر</string>
     <string name="welcome_message">مرحباً بك في تطبيق OneUI</string>
 
     <!-- عناصر القائمة -->
@@ -33,6 +36,7 @@
     <string name="theme">المظهر</string>
     <string name="theme_light">المظهر الفاتح</string>
     <string name="theme_dark">المظهر الداكن</string>
+    <string name="theme_system">مظهر النظام</string>
     <string name="notification_settings">إعدادات الإشعارات</string>
 
     <!-- مفاتيح التفضيلات -->
@@ -71,5 +75,10 @@
     <string name="action_cancel">إلغاء</string>
     <string name="action_ok">موافق</string>
     <string name="action_retry">إعادة المحاولة</string>
+
+    <!-- خاص بـ OneUI -->
+    <string name="expand_title">توسيع العنوان</string>
+    <string name="collapse_title">طي العنوان</string>
+    <string name="toolbar_scroll_behavior">سلوك تمرير شريط الأدوات</string>
 
 </resources>
