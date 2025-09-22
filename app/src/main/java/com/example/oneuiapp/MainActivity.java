@@ -17,9 +17,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnDrawerItemClickListener {
 
     private DrawerLayout drawerLayout;
@@ -35,9 +32,11 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Initialize managers before calling super.onCreate()
         languageManager = new LanguageManager(this);
         themeManager = new ThemeManager(this);
         
+        // Apply language and theme settings
         languageManager.applyLanguage();
         themeManager.applyTheme();
         
@@ -65,23 +64,25 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayShowTitleEnabled(false); // Let CollapsingToolbarLayout handle title
         }
         
+        // Set navigation click listener for drawer toggle
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (drawerLayout.isDrawerOpen(drawerContainer)) {
-                    drawerLayout.closeDrawer(drawerContainer);
-                } else {
-                    drawerLayout.openDrawer(drawerContainer);
-                }
+                toggleDrawer();
             }
         });
     }
 
     private void setupDrawer() {
+        // Configure drawer layout
+        drawerLayout.setDrawerElevation(getResources().getDimension(R.dimen.drawer_elevation));
+        
         // Setup RecyclerView for drawer
-        drawerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        drawerRecyclerView.setLayoutManager(layoutManager);
         drawerRecyclerView.setHasFixedSize(true);
         
         // Initialize drawer adapter
@@ -91,24 +92,52 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
     }
 
     private void setupCollapsingToolbar() {
+        // Set title for collapsing toolbar
         collapsingToolbar.setTitle(getString(R.string.app_name));
         
-        // Enable OneUI specific features using available SESL methods
+        // Enable OneUI specific features
         collapsingToolbar.seslEnableFadeToolbarTitle(true);
         
-        // Monitor collapse state for any additional UI adjustments
+        // Configure extended title behavior (OneUI feature)
+        // The extendedTitleEnabled attribute in XML handles the automatic behavior
+        
+        // Monitor collapse state for additional UI adjustments if needed
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
-        appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                // Optional: Add any custom behavior based on collapse state
-                // The title animation is handled automatically by CollapsingToolbarLayout
-            }
-        });
+        if (appBarLayout != null) {
+            appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+                private boolean isCollapsed = false;
+                
+                @Override
+                public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                    // Calculate collapse ratio
+                    int maxScroll = appBarLayout.getTotalScrollRange();
+                    float percentage = Math.abs(verticalOffset) / (float) maxScroll;
+                    
+                    // Determine if toolbar is collapsed
+                    boolean nowCollapsed = percentage >= 0.9f;
+                    if (isCollapsed != nowCollapsed) {
+                        isCollapsed = nowCollapsed;
+                        // Optional: Perform additional UI updates based on collapse state
+                        updateToolbarState(isCollapsed);
+                    }
+                }
+            });
+        }
+    }
+
+    private void updateToolbarState(boolean isCollapsed) {
+        // Optional: Add custom behavior when toolbar collapses/expands
+        // The title animation is handled automatically by SESL CollapsingToolbarLayout
+        if (isCollapsed) {
+            // Toolbar is collapsed - title is small and positioned at top
+        } else {
+            // Toolbar is expanded - title is large and centered
+        }
     }
 
     private void setupRecyclerView() {
-        mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mainRecyclerView.setLayoutManager(layoutManager);
         mainRecyclerView.setHasFixedSize(true);
         
         // Initialize main adapter
@@ -116,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
         mainAdapter.setOnItemClickListener(new MainAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(String item, int position) {
-                Toast.makeText(MainActivity.this, item, Toast.LENGTH_SHORT).show();
+                showItemClickedMessage(item, position);
             }
         });
         
@@ -125,25 +154,52 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
         mainRecyclerView.setAdapter(mainAdapter);
     }
 
+    private void showItemClickedMessage(String item, int position) {
+        String message = getString(R.string.item_clicked_message, item, position + 1);
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void toggleDrawer() {
+        if (drawerLayout.isDrawerOpen(drawerContainer)) {
+            drawerLayout.closeDrawer(drawerContainer);
+        } else {
+            drawerLayout.openDrawer(drawerContainer);
+        }
+    }
+
     @Override
     public void onItemClick(DrawerAdapter.DrawerItem item, int position) {
+        handleDrawerItemClick(item);
+        drawerLayout.closeDrawer(drawerContainer);
+    }
+
+    private void handleDrawerItemClick(DrawerAdapter.DrawerItem item) {
         switch (item.getItemType()) {
             case DrawerAdapter.DrawerItem.ITEM_TYPE_HOME:
-                Toast.makeText(this, R.string.home, Toast.LENGTH_SHORT).show();
+                // Already on home screen
+                Toast.makeText(this, R.string.already_on_home, Toast.LENGTH_SHORT).show();
                 break;
+                
             case DrawerAdapter.DrawerItem.ITEM_TYPE_SCROLL_LIST:
-                Intent scrollIntent = new Intent(this, ScrollListActivity.class);
-                startActivity(scrollIntent);
+                startActivity(new Intent(this, ScrollListActivity.class));
                 break;
+                
             case DrawerAdapter.DrawerItem.ITEM_TYPE_SETTINGS:
-                Intent settingsIntent = new Intent(this, SettingsActivity.class);
-                startActivity(settingsIntent);
+                startActivity(new Intent(this, SettingsActivity.class));
                 break;
+                
             case DrawerAdapter.DrawerItem.ITEM_TYPE_NOTIFICATIONS:
-                Toast.makeText(this, R.string.notifications, Toast.LENGTH_SHORT).show();
+                showNotificationsMessage();
+                break;
+                
+            default:
+                Toast.makeText(this, R.string.unknown_option, Toast.LENGTH_SHORT).show();
                 break;
         }
-        drawerLayout.closeDrawer(drawerContainer);
+    }
+
+    private void showNotificationsMessage() {
+        Toast.makeText(this, R.string.notifications_feature_coming_soon, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -158,13 +214,23 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
     @Override
     protected void onResume() {
         super.onResume();
-        // Update drawer language when returning to activity
+        
+        // Update drawer content when returning to activity
+        updateDrawerContent();
+        
+        // Handle theme or language changes
+        handleConfigurationChanges();
+    }
+
+    private void updateDrawerContent() {
         if (drawerAdapter != null) {
             drawerAdapter.updateLanguage();
         }
-        
-        // Recreate activity if theme or language changed
+    }
+
+    private void handleConfigurationChanges() {
         if (themeManager.hasThemeChanged() || languageManager.hasLanguageChanged()) {
+            // Recreate activity to apply changes
             recreate();
         }
     }
@@ -172,13 +238,21 @@ public class MainActivity extends AppCompatActivity implements DrawerAdapter.OnD
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            if (drawerLayout.isDrawerOpen(drawerContainer)) {
-                drawerLayout.closeDrawer(drawerContainer);
-            } else {
-                drawerLayout.openDrawer(drawerContainer);
-            }
+            toggleDrawer();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-}
+
+    @Override
+    protected void onDestroy() {
+        // Clean up resources
+        if (drawerAdapter != null) {
+            drawerAdapter.setOnItemClickListener(null);
+        }
+        if (mainAdapter != null) {
+            mainAdapter.setOnItemClickListener(null);
+        }
+        super.onDestroy();
+    }
+    }
