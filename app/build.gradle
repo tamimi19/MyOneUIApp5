@@ -49,9 +49,7 @@ android {
 
 // إزالة مكتبات Google الأصلية - مطلوب للعمل مع SESL
 configurations.all {
-    exclude group: 'androidx.appcompat', module: 'appcompat'
     exclude group: 'androidx.core', module: 'core'
-    exclude group: 'com.google.android.material', module: 'material'
     exclude group: 'androidx.recyclerview', module: 'recyclerview'
     exclude group: 'androidx.coordinatorlayout', module: 'coordinatorlayout'
     exclude group: 'androidx.swiperefreshlayout', module: 'swiperefreshlayout'
@@ -70,8 +68,6 @@ configurations.all {
 
 dependencies {
     // OneUI Core Libraries (SESL) - الطبقة الأساسية التي تحل محل مكتبات Google
-    implementation 'io.github.oneuiproject.sesl:appcompat:1.4.0'
-    implementation 'io.github.oneuiproject.sesl:material:1.5.0'
     implementation 'io.github.oneuiproject.sesl:coordinatorlayout:1.0.0'
     implementation 'io.github.oneuiproject.sesl:drawerlayout:1.0.0'
     implementation 'io.github.oneuiproject.sesl:recyclerview:1.4.1'
