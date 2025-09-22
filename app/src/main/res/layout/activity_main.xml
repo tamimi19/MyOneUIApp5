@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
+        <!-- استخدم الحزمة الصحيحة AppBarLayout -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
@@ -69,7 +70,6 @@
                 android:orientation="vertical"
                 android:paddingTop="@dimen/content_padding_top">
 
-                <!-- RecyclerView للمحتوى الرئيسي -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/main_recycler_view"
                     android:layout_width="match_parent"
@@ -82,7 +82,6 @@
                     android:scrollbarStyle="outsideOverlay"
                     tools:listitem="@layout/main_item" />
 
-                <!-- مساحة إضافية في الأسفل -->
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/bottom_spacing" />
@@ -93,7 +92,7 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <!-- درج التنقل بـ RecyclerView بدلاً من NavigationView -->
+    <!-- درج التنقل -->
     <LinearLayout
         android:id="@+id/drawer_container"
         android:layout_width="@dimen/navigation_drawer_width"
@@ -105,10 +104,8 @@
         android:contentDescription="@string/drawer_content"
         android:elevation="@dimen/drawer_elevation">
 
-        <!-- Header للدرج -->
         <include layout="@layout/drawer_header" />
 
-        <!-- قائمة عناصر التنقل -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/drawer_recycler_view"
             android:layout_width="match_parent"
