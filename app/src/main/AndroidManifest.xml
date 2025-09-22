@@ -46,7 +46,7 @@
             android:name=".ScrollListActivity"
             android:exported="false"
             android:theme="@style/OneUITheme"
-            <android:configChanges="orientation|screenSize|keyboardHidden|locale"
+            android:configChanges="orientation|screenSize|keyboardHidden|locale"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
