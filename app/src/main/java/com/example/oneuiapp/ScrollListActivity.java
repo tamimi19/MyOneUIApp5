@@ -52,42 +52,24 @@ public class ScrollListActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_back);
         }
     }
 
     private void setupCollapsingToolbar() {
         collapsingToolbar.setTitle(getString(R.string.scroll_screen));
-        collapsingToolbar.setExtendedTitleEnabled(true);
+        
+        // Enable OneUI specific features using available SESL methods
         collapsingToolbar.seslEnableFadeToolbarTitle(true);
         
+        // Monitor collapse state for any additional UI adjustments
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                int maxScroll = appBarLayout.getTotalScrollRange();
-                float percentage = (float) Math.abs(verticalOffset) / (float) maxScroll;
-                updateTitlePosition(percentage);
+                // Optional: Add any custom behavior based on collapse state
+                // The title animation is handled automatically by CollapsingToolbarLayout
             }
         });
-    }
-
-    private void updateTitlePosition(float percentage) {
-        float expandedTitleSize = getResources().getDimension(R.dimen.expanded_title_size);
-        float collapsedTitleSize = getResources().getDimension(R.dimen.collapsed_title_size);
-        
-        float currentSize = expandedTitleSize - ((expandedTitleSize - collapsedTitleSize) * percentage);
-        collapsingToolbar.setExpandedTitleTextSize(currentSize);
-        
-        if (percentage < 0.5f) {
-            collapsingToolbar.setExpandedTitleGravity(android.view.Gravity.BOTTOM | android.view.Gravity.CENTER_HORIZONTAL);
-        } else {
-            if (languageManager.isRtlLanguage()) {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.END);
-            } else {
-                collapsingToolbar.setCollapsedTitleGravity(android.view.Gravity.TOP | android.view.Gravity.START);
-            }
-        }
     }
 
     private void setupRecyclerView() {
@@ -102,11 +84,14 @@ public class ScrollListActivity extends AppCompatActivity {
     private void generateListItems() {
         List<ScrollListItem> items = new ArrayList<>();
         
+        // Create 200 list items as required
         for (int i = 1; i <= 200; i++) {
             ScrollListItem item = new ScrollListItem();
             item.setTitle(getString(R.string.list_item_title) + " " + i);
             item.setDescription(getString(R.string.list_item_description) + " " + i);
             item.setIconResource(getIconForItem(i));
+            item.setShowChevron(true);
+            item.setEnabled(true);
             items.add(item);
         }
         
@@ -114,14 +99,9 @@ public class ScrollListActivity extends AppCompatActivity {
     }
 
     private int getIconForItem(int position) {
-        int[] icons = {
-            R.drawable.ic_item_1,
-            R.drawable.ic_item_2,
-            R.drawable.ic_item_3,
-            R.drawable.ic_item_4,
-            R.drawable.ic_item_5
-        };
-        return icons[position % icons.length];
+        // Use a simple pattern for icons since we don't have the specific icon resources
+        // This method can be updated when the actual icons are available
+        return android.R.drawable.ic_menu_info_details; // Default Android icon as placeholder
     }
 
     @Override
@@ -136,8 +116,9 @@ public class ScrollListActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        // Recreate activity if theme or language changed
         if (themeManager.hasThemeChanged() || languageManager.hasLanguageChanged()) {
             recreate();
         }
     }
-        }
+}
