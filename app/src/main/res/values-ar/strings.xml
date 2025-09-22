@@ -1,35 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- معلومات التطبيق -->
     <string name="app_name">تطبيق OneUI</string>
     <string name="app_version">الإصدار 1.0</string>
     <string name="app_icon_description">أيقونة التطبيق</string>
 
-    <!-- التنقل -->
     <string name="home">الرئيسية</string>
     <string name="scroll_screen">شاشة التمرير</string>
     <string name="settings">الإعدادات</string>
     <string name="notifications">الإشعارات</string>
     <string name="notifications_settings">إعدادات الإشعارات</string>
 
-    <!-- الشاشة الرئيسية -->
-    <string name="main_item">عنصر رئيسي</string>
-    <string name="main_item_description">هذا وصف العنصر الرئيسي مع تفاصيل إضافية</string>
+    <string name="main_item">العنصر الرئيسي</string>
+    <string name="main_item_description">هذا هو وصف العنصر الرئيسي مع تفاصيل إضافية</string>
     <string name="main_item_icon_description">أيقونة العنصر الرئيسي</string>
-    <string name="main_item_chevron_description">انتقل إلى تفاصيل العنصر</string>
+    <string name="main_item_chevron_description">الانتقال إلى تفاصيل العنصر</string>
     <string name="welcome_message">مرحباً بك في تطبيق OneUI</string>
 
-    <!-- عناصر القائمة -->
     <string name="list_item_title">عنوان عنصر القائمة</string>
-    <string name="list_item_description">هذا وصف لعنصر القائمة مع تفاصيل إضافية</string>
+    <string name="list_item_description">هذا هو وصف عنصر القائمة مع تفاصيل إضافية</string>
     <string name="list_item_icon_description">أيقونة عنصر القائمة</string>
-    <string name="list_item_chevron_description">انتقل إلى تفاصيل العنصر</string>
+    <string name="list_item_chevron_description">الانتقال إلى تفاصيل العنصر</string>
 
-    <!-- درج التنقل -->
     <string name="drawer_item_icon_description">أيقونة عنصر التنقل</string>
     <string name="drawer_item_arrow_description">سهم التنقل</string>
 
-    <!-- الإعدادات -->
     <string name="language">اللغة</string>
     <string name="language_english">الإنجليزية</string>
     <string name="language_arabic">العربية</string>
@@ -39,41 +33,65 @@
     <string name="theme_system">مظهر النظام</string>
     <string name="notification_settings">إعدادات الإشعارات</string>
 
-    <!-- مفاتيح التفضيلات -->
-    <string name="pref_language_key">language</string>
-    <string name="pref_theme_key">theme</string>
-    <string name="pref_notifications_key">notifications</string>
+    <string name="pref_language_key" translatable="false">language</string>
+    <string name="pref_theme_key" translatable="false">theme</string>
+    <string name="pref_notifications_key" translatable="false">notifications</string>
 
-    <!-- ملخصات التفضيلات -->
     <string name="language_summary">اختر لغة التطبيق</string>
     <string name="theme_summary">اختر بين المظهر الفاتح والداكن</string>
-    <string name="notifications_summary">تكوين تفضيلات الإشعارات</string>
+    <string name="notifications_summary">قم بتهيئة تفضيلات الإشعارات</string>
 
-    <!-- الفئات -->
     <string name="category_general">عام</string>
     <string name="category_appearance">المظهر</string>
     <string name="category_notifications">الإشعارات</string>
 
-    <!-- الرسائل -->
     <string name="language_changed">تم تغيير اللغة بنجاح</string>
     <string name="theme_changed">تم تغيير المظهر بنجاح</string>
-    <string name="restart_required">ستصبح التغييرات فعالة بعد إعادة التشغيل</string>
+    <string name="restart_required">ستُطبّق التغييرات بعد إعادة تشغيل التطبيق</string>
 
-    <!-- أوصاف المحتوى -->
     <string name="menu_button">زر القائمة</string>
-    <string name="back_button">زر العودة</string>
+    <string name="back_button">زر الرجوع</string>
     <string name="collapse_toolbar">طي شريط الأدوات</string>
     <string name="expand_toolbar">توسيع شريط الأدوات</string>
 
-    <!-- رسائل الخطأ -->
-    <string name="error_general">حدث خطأ</string>
+    <string name="error_general">حدث خطأ ما</string>
     <string name="error_network">خطأ في الاتصال بالشبكة</string>
     <string name="error_loading">خطأ في التحميل</string>
 
-    <!-- الإجراءات -->
     <string name="action_save">حفظ</string>
     <string name="action_cancel">إلغاء</string>
     <string name="action_ok">موافق</string>
     <string name="action_retry">إعادة المحاولة</string>
 
-    <!-- خاص بـ OneUI -->
+    <string name="expand_title">توسيع العنوان</string>
+    <string name="collapse_title">طي العنوان</string>
+    <string name="toolbar_scroll_behavior">سلوك تمرير شريط الأدوات</string>
+
+    <string name="item_clicked_message">تم النقر: %1$s (عنصر %2$d)</string>
+    <string name="already_on_home">أنت بالفعل في الشاشة الرئيسية</string>
+    <string name="unknown_option">تم تحديد خيار غير معروف</string>
+    <string name="notifications_feature_coming_soon">ميزة الإشعارات ستتوفر قريباً</string>
+    <string name="drawer_elevation" translatable="false">8dp</string>
+    
+    <string name="navigation_drawer_open">فتح قائمة التنقل</string>
+    <string name="navigation_drawer_close">إغلاق قائمة التنقل</string>
+    <string name="drawer_header_subtitle">تطبيق تصميم OneUI</string>
+    
+    <string name="toolbar_expanded">شريط الأدوات موسّع</string>
+    <string name="toolbar_collapsed">شريط الأدوات مطوي</string>
+    
+    <string name="scroll_to_top">التمرير للأعلى</string>
+    <string name="main_content">المحتوى الرئيسي</string>
+    <string name="drawer_content">محتوى قائمة التنقل</string>
+    
+    <string name="scroll_item_title">عنصر التمرير %1$d</string>
+    <string name="scroll_item_description">هذا هو وصف عنصر قائمة التمرير رقم %1$d مع تفاصيل إضافية</string>
+    <string name="scroll_item_clicked">تم النقر: %1$s (الموضع %2$d)</string>
+    
+    <string name="loading_items">جاري تحميل العناصر...</string>
+    <string name="items_loaded">تم تحميل العناصر بنجاح</string>
+    <string name="no_items_found">لم يتم العثور على أية عناصر</string>
+    
+    <string name="current_selection">الحالي: %1$s</string>
+
+</resources>
