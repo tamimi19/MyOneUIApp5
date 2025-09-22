@@ -81,4 +81,25 @@
     <string name="collapse_title">Collapse title</string>
     <string name="toolbar_scroll_behavior">Toolbar scroll behavior</string>
 
+    <!-- New strings for improved functionality -->
+    <string name="item_clicked_message">Clicked: %1$s (Item %2$d)</string>
+    <string name="already_on_home">You are already on the home screen</string>
+    <string name="unknown_option">Unknown option selected</string>
+    <string name="notifications_feature_coming_soon">Notifications feature will be available soon</string>
+    <string name="drawer_elevation">8dp</string>
+    
+    <!-- Additional drawer and navigation strings -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawer_header_subtitle">OneUI Design Implementation</string>
+    
+    <!-- CollapsingToolbar related strings -->
+    <string name="toolbar_expanded">Toolbar expanded</string>
+    <string name="toolbar_collapsed">Toolbar collapsed</string>
+    
+    <!-- Accessibility improvements -->
+    <string name="scroll_to_top">Scroll to top</string>
+    <string name="main_content">Main content</string>
+    <string name="drawer_content">Navigation drawer content</string>
+
 </resources>
