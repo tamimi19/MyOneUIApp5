@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_bar_height"
             android:fitsSystemWindows="true"
-            style="@style/Widget.Design.AppBarLayout"
+            android:theme="@style/Widget.Design.AppBarLayout"
             app:elevation="0dp">
 
             <!-- CollapsingToolbarLayout مع ثيم OneUI وأعلام التمرير -->
