@@ -7,28 +7,23 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
-        style="?attr/appBarLayoutStyle"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:seslUseCustomHeight="true"
-        app:seslHeightProportion="0.4">
+        android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
-            style="?attr/collapsingToolbarLayoutStyle"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_scrollFlags="exitUntilCollapsed|scroll"
+            android:layout_height="200dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:contentScrim="?attr/colorPrimary"
             app:title="@string/app_name">
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:background="@android:color/transparent"
                 app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_menu"
-                app:navigationContentDescription="@string/navigation_drawer_open" />
+                app:navigationIcon="@drawable/ic_menu" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -38,45 +33,32 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:fitsSystemWindows="false">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <!-- المحتوى الرئيسي -->
         <LinearLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!-- المحتوى القابل للتمرير -->
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/main_scroll_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:contentDescription="@string/main_content">
+                android:fillViewport="true">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingTop="16dp">
+                    android:padding="16dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/main_recycler_view"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:nestedScrollingEnabled="false"
-                        android:padding="16dp"
-                        android:clipToPadding="false"
-                        android:scrollbars="vertical"
-                        android:fadeScrollbars="true"
-                        android:scrollbarStyle="outsideOverlay"
                         tools:listitem="@layout/main_item" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="16dp" />
 
                 </LinearLayout>
 
@@ -84,30 +66,28 @@
 
         </LinearLayout>
 
-        <!-- درج التنقل -->
         <LinearLayout
             android:id="@+id/drawer_container"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:background="?attr/colorSurface"
-            android:fitsSystemWindows="true"
             android:orientation="vertical"
-            android:contentDescription="@string/drawer_content"
-            android:elevation="8dp">
+            android:padding="16dp">
 
-            <include layout="@layout/drawer_header" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:padding="16dp"
+                android:gravity="center" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/drawer_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:clipToPadding="false"
-                android:scrollbars="vertical"
-                android:fadeScrollbars="true"
-                android:scrollbarStyle="outsideOverlay"
                 tools:listitem="@layout/drawer_item" />
 
         </LinearLayout>
