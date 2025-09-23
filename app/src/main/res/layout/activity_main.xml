@@ -18,7 +18,7 @@
             app:contentScrim="#2196F3"
             app:title="@string/app_name">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
