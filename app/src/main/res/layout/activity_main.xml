@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="#2196F3"
             app:title="@string/app_name">
 
             <androidx.appcompat.widget.Toolbar
@@ -35,11 +35,10 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/main_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/main_scroll_view"
@@ -64,16 +63,15 @@
 
             </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:id="@+id/drawer_container"
             android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:background="?attr/colorSurface"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="#FFFFFF"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -82,12 +80,15 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:padding="16dp"
+                android:background="#2196F3"
+                android:textColor="#FFFFFF"
                 android:gravity="center" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/drawer_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:padding="8dp"
                 tools:listitem="@layout/drawer_item" />
 
         </LinearLayout>
