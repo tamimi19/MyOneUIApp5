@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<dev.oneuiproject.oneui.layout.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:expanded="true"
-    app:title="@string/app_name">
+    android:fitsSystemWindows="true">
 
     <!-- المحتوى الرئيسي -->
     <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_location="main_content">
+        android:fitsSystemWindows="true">
+
+        <!-- AppBarLayout مع ثيم OneUI -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/Widget.Design.AppBarLayout"
+            app:elevation="0dp">
+
+            <!-- CollapsingToolbarLayout مع ثيم OneUI وأعلام التمرير -->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                style="@style/Widget.Design.CollapsingToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:contentScrim="?attr/colorPrimary"
+                app:statusBarScrim="?attr/colorPrimaryVariant"
+                app:expandedTitleGravity="bottom|center_horizontal"
+                app:collapsedTitleGravity="top|start"
+                app:expandedTitleMarginStart="@dimen/content_padding_top"
+                app:expandedTitleMarginEnd="@dimen/content_padding_top"
+                app:expandedTitleMarginBottom="@dimen/content_padding_top"
+                app:toolbarId="@id/toolbar">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@android:color/transparent"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/ic_menu"
+                    app:navigationContentDescription="@string/navigation_drawer_open"
+                    app:titleTextColor="?attr/colorOnPrimary" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <!-- المحتوى القابل للتمرير -->
         <androidx.core.widget.NestedScrollView
             android:id="@+id/main_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:fillViewport="true"
             android:contentDescription="@string/main_content">
 
@@ -27,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="16dp">
+                android:paddingTop="@dimen/content_padding_top">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/main_recycler_view"
@@ -43,7 +82,7 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="16dp" />
+                    android:layout_height="@dimen/bottom_spacing" />
 
             </LinearLayout>
 
@@ -52,17 +91,31 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- درج التنقل -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/drawer_recycler_view"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/drawer_container"
+        android:layout_width="@dimen/navigation_drawer_width"
         android:layout_height="match_parent"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:clipToPadding="false"
-        android:scrollbars="vertical"
-        android:fadeScrollbars="true"
-        android:scrollbarStyle="outsideOverlay"
-        app:layout_location="drawer_panel"
-        tools:listitem="@layout/drawer_item" />
+        android:layout_gravity="start"
+        android:background="?attr/colorSurface"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical"
+        android:contentDescription="@string/drawer_content"
+        android:elevation="@dimen/drawer_elevation">
 
-</dev.oneuiproject.oneui.layout.DrawerLayout>
+        <include layout="@layout/drawer_header" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/drawer_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:clipToPadding="false"
+            android:scrollbars="vertical"
+            android:fadeScrollbars="true"
+            android:scrollbarStyle="outsideOverlay"
+            tools:listitem="@layout/drawer_item" />
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
