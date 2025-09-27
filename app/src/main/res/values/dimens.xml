@@ -1,1 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <!-- App Bar Height for CollapsingToolbarLayout -->
+    <dimen name="app_bar_height">280dp</dimen>
+    
+    <!-- Navigation Drawer Width -->
+    <dimen name="navigation_drawer_width">320dp</dimen>
+    <dimen name="drawer_elevation">8dp</dimen>
+    
+    <!-- Content Spacing -->
+    <dimen name="content_padding_top">16dp</dimen>
+    <dimen name="bottom_spacing">48dp</dimen>
+    
+    <!-- OneUI Specific Dimensions -->
+    <dimen name="oneui_toolbar_height">56dp</dimen>
+    <dimen name="oneui_extended_title_size">28sp</dimen>
+    <dimen name="oneui_collapsed_title_size">20sp</dimen>
+    
+    <!-- List Item Dimensions -->
+    <dimen name="list_item_height">72dp</dimen>
+    <dimen name="list_item_icon_size">40dp</dimen>
+    <dimen name="list_item_padding">16dp</dimen>
+    
+    <!-- Drawer Item Dimensions -->
+    <dimen name="drawer_item_height">56dp</dimen>
+    <dimen name="drawer_item_icon_size">24dp</dimen>
+    <dimen name="drawer_item_padding_horizontal">24dp</dimen>
+    <dimen name="drawer_item_icon_margin">32dp</dimen>
+    
+    <!-- Header Dimensions -->
+    <dimen name="drawer_header_height">176dp</dimen>
+    <dimen name="drawer_header_padding">24dp</dimen>
+    <dimen name="drawer_header_icon_size">64dp</dimen>
+    <dimen name="drawer_header_icon_margin">16dp</dimen>
+    
+    <!-- Main Item Specific -->
+    <dimen name="main_item_icon_size">48dp</dimen>
+    <dimen name="main_item_icon_padding">12dp</dimen>
+    <dimen name="main_item_min_height">72dp</dimen>
+    
+    <!-- Card and Material Design -->
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    
+    <!-- Text Sizes -->
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_small">14sp</dimen>
+    <dimen name="text_size_extra_small">12sp</dimen>
+    
+    <!-- Ripple and Touch -->
+    <dimen name="touch_target_size">48dp</dimen>
+    <dimen name="ripple_padding">8dp</dimen>
+    
+    <!-- Status Bar and System UI -->
+    <dimen name="status_bar_height">24dp</dimen>
+    <dimen name="system_window_inset_top">0dp</dimen>
 
+</resources>
