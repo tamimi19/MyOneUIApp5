@@ -18,7 +18,7 @@
         android:layout_marginEnd="32dp"
         android:contentDescription="@string/drawer_item_icon_description"
         android:scaleType="centerInside"
-        android:tint="?android:attr/textColorPrimary" />
+        app:tint="?attr/colorOnSurface" />
 
     <TextView
         android:id="@+id/drawer_item_text"
@@ -27,7 +27,8 @@
         android:layout_weight="1"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textAppearance="?attr/oneui_textAppearanceSubtitle1"
+        android:textColor="?attr/colorOnSurface"
         android:textSize="16sp" />
 
     <ImageView
@@ -39,7 +40,7 @@
         android:scaleType="centerInside"
         android:src="@drawable/ic_oui_arrow_right"
         android:visibility="gone"
-        android:tint="?android:attr/textColorSecondary"
+        app:tint="?attr/colorOnSurface"
         android:alpha="0.6" />
 
 </LinearLayout>
