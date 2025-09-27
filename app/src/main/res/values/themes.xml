@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     
-    <!-- النمط الأساسي للتطبيق باستخدام مكتبة OneUI -->
-    <style name="OneUITheme" parent="OneUI.Theme.DayNight.NoActionBar">
-        <!-- تخصيصات إضافية للتطبيق -->
+    <!-- النمط الأساسي للتطبيق باستخدام AppCompat مع تحسينات OneUI -->
+    <style name="OneUITheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
+        <item name="selectableItemBackgroundBorderless">?android:attr/selectableItemBackgroundBorderless</item>
     </style>
 
-    <!-- تخصيصات إضافية للنصوص -->
-    <style name="OneUICustomTextAppearance" parent="OneUI.TextAppearance.Body1">
-        <!-- تخصيصات إضافية حسب الحاجة -->
+    <!-- تخصيصات للنصوص -->
+    <style name="OneUICustomTextAppearance" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
 </resources>
