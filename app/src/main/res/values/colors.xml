@@ -1,1 +1,13 @@
-
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ألوان التطبيق الأساسية -->
+    <color name="colorPrimary">#1E88E5</color>
+    <color name="colorPrimaryDark">#1565C0</color>
+    <color name="colorAccent">#E040FB</color>
+    
+    <!-- ألوان إضافية للتوافق -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorBackground">#FAFAFA</color>
+</resources>
