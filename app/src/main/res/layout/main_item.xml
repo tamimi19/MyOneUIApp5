@@ -21,7 +21,7 @@
         android:contentDescription="@string/main_item_icon_description"
         android:padding="12dp"
         android:scaleType="centerInside"
-        android:tint="@color/colorOnPrimary" />
+        app:tint="?attr/colorOnPrimary" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -31,25 +31,22 @@
 
         <TextView
             android:id="@+id/main_item_title"
+            style="@style/OneUITitleTextAppearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="16sp"
-            android:textStyle="bold"
             tools:text="@string/main_item" />
 
         <TextView
             android:id="@+id/main_item_description"
+            style="@style/OneUIBodyTextAppearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:alpha="0.7"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="14sp"
             tools:text="@string/main_item_description" />
 
     </LinearLayout>
@@ -63,6 +60,6 @@
         android:contentDescription="@string/main_item_chevron_description"
         android:scaleType="centerInside"
         android:src="@drawable/ic_chevron_right"
-        android:tint="?android:attr/textColorSecondary" />
+        app:tint="?attr/colorOnSurface" />
 
 </LinearLayout>
