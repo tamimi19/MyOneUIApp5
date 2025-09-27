@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     
-    <!-- النمط الأساسي للتطبيق مع دعم خصائص Material Design -->
-    <style name="OneUITheme" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">#1E88E5</item>
-        <item name="colorPrimaryDark">#1565C0</item>
-        <item name="colorAccent">#E040FB</item>
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnSurface">?android:attr/textColorPrimary</item>
-        <item name="android:windowBackground">?android:attr/colorBackground</item>
+    <!-- النمط الأساسي للتطبيق باستخدام مكتبة OneUI -->
+    <style name="OneUITheme" parent="OneUI.Theme.DayNight.NoActionBar">
+        <!-- تخصيصات إضافية للتطبيق -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- تخصيصات إضافية للنصوص والأبعاد -->
-    <style name="OneUICustomTextAppearance" parent="TextAppearance.AppCompat.Body1">
-        <!-- يتم تطبيق النمط الأساسي تلقائياً من خلال OneUITheme -->
+    <!-- تخصيصات إضافية للنصوص -->
+    <style name="OneUICustomTextAppearance" parent="OneUI.TextAppearance.Body1">
+        <!-- تخصيصات إضافية حسب الحاجة -->
     </style>
 
 </resources>
