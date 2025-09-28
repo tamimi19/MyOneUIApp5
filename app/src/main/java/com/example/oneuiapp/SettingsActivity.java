@@ -53,6 +53,11 @@ public class SettingsActivity extends AppCompatActivity {
     private void initViews() {
         collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         toolbar = findViewById(R.id.toolbar);
+        
+        // Check if required views are found
+        if (toolbar == null) {
+            throw new RuntimeException("Toolbar not found in layout. Make sure R.id.toolbar exists in activity_settings.xml");
+        }
     }
 
     private void setupToolbar() {
@@ -65,6 +70,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupCollapsingToolbar() {
+        // Only proceed if CollapsingToolbarLayout is available
+        if (collapsingToolbar == null) {
+            // Fallback: Use regular toolbar title if CollapsingToolbarLayout is not available
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setTitle(getString(R.string.settings));
+            }
+            return;
+        }
+        
         // Set title for settings screen
         collapsingToolbar.setTitle(getString(R.string.settings));
         
@@ -323,4 +338,4 @@ public class SettingsActivity extends AppCompatActivity {
             // startActivity(intent);
         }
     }
-        }
+}
