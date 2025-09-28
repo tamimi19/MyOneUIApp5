@@ -48,6 +48,14 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
         collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.scroll_recycler_view);
+        
+        // Check if required views are found
+        if (toolbar == null) {
+            throw new RuntimeException("Toolbar not found in layout. Make sure R.id.toolbar exists in activity_scroll_list.xml");
+        }
+        if (recyclerView == null) {
+            throw new RuntimeException("RecyclerView not found in layout. Make sure R.id.scroll_recycler_view exists in activity_scroll_list.xml");
+        }
     }
 
     private void setupToolbar() {
@@ -60,6 +68,16 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
     }
 
     private void setupCollapsingToolbar() {
+        // Only proceed if CollapsingToolbarLayout is available
+        if (collapsingToolbar == null) {
+            // Fallback: Use regular toolbar title if CollapsingToolbarLayout is not available
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayShowTitleEnabled(true);
+                getSupportActionBar().setTitle(getString(R.string.scroll_screen));
+            }
+            return;
+        }
+        
         // Set title for the scroll list screen
         collapsingToolbar.setTitle(getString(R.string.scroll_screen));
         
@@ -211,4 +229,4 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
         super.onBackPressed();
         // Optional: Add custom back animation if needed
     }
-                         }
+}
