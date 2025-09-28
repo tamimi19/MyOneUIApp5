@@ -47,14 +47,14 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
     private void initViews() {
         collapsingToolbar = findViewById(R.id.collapsing_toolbar);
         toolbar = findViewById(R.id.toolbar);
-        recyclerView = findViewById(R.id.scroll_recycler_view);
+        recyclerView = findViewById(R.id.recycler_view_list);
         
         // Check if required views are found
         if (toolbar == null) {
             throw new RuntimeException("Toolbar not found in layout. Make sure R.id.toolbar exists in activity_scroll_list.xml");
         }
         if (recyclerView == null) {
-            throw new RuntimeException("RecyclerView not found in layout. Make sure R.id.scroll_recycler_view exists in activity_scroll_list.xml");
+            throw new RuntimeException("RecyclerView not found in layout. Make sure R.id.recycler_view_list exists in activity_scroll_list.xml");
         }
     }
 
