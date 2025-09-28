@@ -3,22 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="72dp"
+    android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
     android:gravity="center_vertical"
+    android:minHeight="72dp"
     android:orientation="horizontal"
     android:padding="16dp">
 
     <ImageView
-        android:id="@+id/list_item_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/main_item_icon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="16dp"
-        android:contentDescription="@string/list_item_icon_description"
+        android:background="@drawable/circle_background"
+        android:contentDescription="@string/main_item_icon_description"
+        android:padding="12dp"
         android:scaleType="centerInside"
-        app:tint="?attr/colorPrimary" />
+        android:tint="@android:color/white" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -27,40 +30,36 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/list_item_title"
+            android:id="@+id/main_item_title"
+            style="@style/OneUITitleTextAppearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="@string/list_item_title" />
+            tools:text="@string/main_item" />
 
         <TextView
-            android:id="@+id/list_item_description"
+            android:id="@+id/main_item_description"
+            style="@style/OneUIBodyTextAppearance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:alpha="0.7"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textColor="?attr/colorOnSurface"
-            android:textSize="14sp"
-            android:alpha="0.7"
-            tools:text="@string/list_item_description" />
+            tools:text="@string/main_item_description" />
 
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/list_item_chevron"
+        android:id="@+id/main_item_chevron"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:contentDescription="@string/list_item_chevron_description"
+        android:alpha="0.5"
+        android:contentDescription="@string/main_item_chevron_description"
         android:scaleType="centerInside"
         android:src="@drawable/ic_oui_arrow_right"
-        android:visibility="visible"
-        app:tint="?attr/colorOnSurface"
-        android:alpha="0.5" />
+        android:tint="?android:attr/textColorSecondary" />
 
 </LinearLayout>
