@@ -1,11 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#036DE9</color>
-    <color name="colorPrimaryDark">#024DB5</color>
-    <color name="colorAccent">#FF9800</color>
-
-    <color name="colorBackground">#FFFFFFFF</color>
-    <color name="colorSurface">#F8F9FA</color>
-
-    <color name="colorOnPrimary">#FFFFFF</color>
-    <color name="colorOnSurface">#212121</color>
+    <!-- ألوان الثيم الرئيسية حسب دليل OneUI (ألوان غنية وصلبة)3 -->
+    <color name="primaryColor">#2196F3</color>        <!-- لون أساسي أزرق -->
+    <color name="primaryDarkColor">#1976D2</color>    <!-- نسخة داكنة من اللون الأساسي -->
+    <color name="onPrimaryColor">#FFFFFF</color>      <!-- لون النص على اللون الأساسي (أبيض) -->
+    <color name="secondaryColor">#4CAF50</color>      <!-- لون ثانوي/تمييزي أخضر -->
+    <color name="onSecondaryColor">#FFFFFF</color>    <!-- لون النص على اللون الثانوي (أبيض) -->
+    <color name="backgroundColor">#FFFFFF</color>     <!-- لون خلفية الشاشة (أبيض) -->
+    <color name="surfaceColor">#FFFFFF</color>        <!-- لون السطح/البطاقة (أبيض) -->
+    <color name="onSurfaceColor">#000000</color>      <!-- لون النص على السطح (أسود) -->
 </resources>
