@@ -59,7 +59,7 @@
         android:alpha="0.5"
         android:contentDescription="@string/main_item_chevron_description"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_chevron_right"
+        android:src="@drawable/ic_oui_arrow_right"
         android:tint="?android:attr/textColorSecondary" />
 
 </LinearLayout>
