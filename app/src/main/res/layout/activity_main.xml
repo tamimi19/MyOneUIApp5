@@ -86,8 +86,8 @@
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:padding="16dp"
-                android:background="?attr/colorPrimary"
-                android:textColor="?attr/colorOnPrimary"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorOnPrimary"
                 android:gravity="center" />
 
             <androidx.recyclerview.widget.RecyclerView
