@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ScrollListActivity extends AppCompatActivity implements ScrollListAdapter.OnItemClickListener {
 
     private CollapsingToolbarLayout collapsingToolbar;
-    private MaterialToolbar toolbar;
+    private Toolbar toolbar;
     private RecyclerView recyclerView;
     private ScrollListAdapter adapter;
     private ThemeManager themeManager;
@@ -211,4 +211,4 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
         super.onBackPressed();
         // Optional: Add custom back animation if needed
     }
-}
+                         }
