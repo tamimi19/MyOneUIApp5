@@ -78,11 +78,21 @@ public class ScrollListActivity extends AppCompatActivity implements ScrollListA
             return;
         }
         
-        // Set title for the scroll list screen
-        collapsingToolbar.setTitle(getString(R.string.scroll_screen));
+        // Disable CollapsingToolbarLayout title and use Toolbar title instead
+        collapsingToolbar.setTitleEnabled(false);
+        
+        // Set title directly on Toolbar
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(true);
+            getSupportActionBar().setTitle(getString(R.string.scroll_screen));
+        }
         
         // Enable OneUI specific features using available SESL methods
-        collapsingToolbar.seslEnableFadeToolbarTitle(true);
+        try {
+            collapsingToolbar.seslEnableFadeToolbarTitle(true);
+        } catch (Exception e) {
+            // Method may not be available in this version
+        }
         
         // Monitor collapse state for additional UI adjustments if needed
         AppBarLayout appBarLayout = findViewById(R.id.app_bar_layout);
