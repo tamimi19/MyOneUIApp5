@@ -7,10 +7,10 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.google.android.material.appbar.MaterialToolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import android.widget.Toast;
 public class SettingsActivity extends AppCompatActivity {
 
     private CollapsingToolbarLayout collapsingToolbar;
-    private MaterialToolbar toolbar;
+    private Toolbar toolbar;
     private ThemeManager themeManager;
     private LanguageManager languageManager;
 
@@ -323,4 +323,4 @@ public class SettingsActivity extends AppCompatActivity {
             // startActivity(intent);
         }
     }
-}
+        }
