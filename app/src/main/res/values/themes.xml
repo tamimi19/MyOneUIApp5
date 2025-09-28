@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    
+
     <!-- النمط الأساسي للتطبيق باستخدام مكتبات SESL -->
     <style name="OneUITheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <!-- ألوان رئيسية -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- خلفية التطبيق -->
         <item name="android:windowBackground">@color/colorBackground</item>
-        
+        <item name="android:colorBackground">@color/colorBackground</item>
+
+        <!-- ألوان النصوص (مطلوبة لتهيئة TextView/TextAppearance) -->
+        <item name="android:textColorPrimary">@color/colorOnSurface</item>
+        <item name="android:textColorSecondary">@color/colorOnSurface</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+        <item name="colorSurface">@color/colorSurface</item>
+
         <!-- إعدادات OneUI المخصصة -->
         <item name="selectableItemBackground">?android:attr/selectableItemBackground</item>
         <item name="selectableItemBackgroundBorderless">?android:attr/selectableItemBackgroundBorderless</item>
-        
-        <!-- إعدادات الألوان للتوافق مع SESL -->
-        <item name="colorOnPrimary">@android:color/white</item>
-        <item name="colorOnSurface">?android:attr/textColorPrimary</item>
-        <item name="colorSurface">?android:attr/colorBackground</item>
     </style>
 
-    <!-- تخصيصات للنصوص متوافقة مع SESL -->
+    <!-- مظاهر نصية واضحة وموثوقة -->
     <style name="OneUICustomTextAppearance" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">16sp</item>
     </style>
 
-    <!-- نمط للعناوين الرئيسية -->
     <style name="OneUITitleTextAppearance" parent="TextAppearance.AppCompat.Headline">
         <item name="android:textColor">?android:attr/textColorPrimary</item>
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <!-- نمط للنصوص الثانوية -->
     <style name="OneUIBodyTextAppearance" parent="TextAppearance.AppCompat.Body2">
         <item name="android:textColor">?android:attr/textColorSecondary</item>
         <item name="android:textSize">14sp</item>
