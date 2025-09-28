@@ -138,9 +138,8 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
                 chevronImageView.setVisibility(View.GONE);
             }
 
-            itemView.setContentDescription(
-                context.getString(R.string.list_item_title) + ": " + item.getTitle()
-            );
+            // تحديث الوصف البديل للعنصر بالكامل إلى عنوان العنصر:
+            itemView.setContentDescription(item.getTitle());
 
             itemView.setEnabled(item.isEnabled());
             itemView.setAlpha(item.isEnabled() ? 1.0f : 0.6f);
