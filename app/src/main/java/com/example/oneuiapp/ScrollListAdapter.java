@@ -87,7 +87,7 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
     }
 
     public class ScrollListViewHolder extends RecyclerView.ViewHolder {
-        
+
         private ImageView iconImageView;
         private TextView titleTextView;
         private TextView descriptionTextView;
@@ -95,10 +95,11 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
 
         public ScrollListViewHolder(@NonNull View itemView) {
             super(itemView);
-            iconImageView = itemView.findViewById(R.id.list_item_icon);
-            titleTextView = itemView.findViewById(R.id.list_item_title);
-            descriptionTextView = itemView.findViewById(R.id.list_item_description);
-            chevronImageView = itemView.findViewById(R.id.list_item_chevron);
+            // استخدم المعرفات الموجودة في list_item.xml (main_item_*)
+            iconImageView = itemView.findViewById(R.id.main_item_icon);
+            titleTextView = itemView.findViewById(R.id.main_item_title);
+            descriptionTextView = itemView.findViewById(R.id.main_item_description);
+            chevronImageView = itemView.findViewById(R.id.main_item_chevron);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -117,7 +118,7 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
             }
 
             titleTextView.setText(item.getTitle());
-            
+
             if (item.getDescription() != null && !item.getDescription().isEmpty()) {
                 descriptionTextView.setText(item.getDescription());
                 descriptionTextView.setVisibility(View.VISIBLE);
@@ -138,7 +139,7 @@ public class ScrollListAdapter extends RecyclerView.Adapter<ScrollListAdapter.Sc
                 chevronImageView.setVisibility(View.GONE);
             }
 
-            // تحديث الوصف البديل للعنصر بالكامل إلى عنوان العنصر:
+            // accessibility: استخدم عنوان العنصر كوصف
             itemView.setContentDescription(item.getTitle());
 
             itemView.setEnabled(item.isEnabled());
