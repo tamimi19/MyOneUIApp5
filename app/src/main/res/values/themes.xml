@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- ثيم OneUI يرث من MaterialComponents لدعم سمات SESL/OneUI -->
     <style name="OneUITheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- اللون الأساسي (العنصر الأعلى في الواجهة) -->
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
-        <item name="colorOnPrimary">@color/onPrimaryColor</item>
-        <!-- اللون الثانوي أو التمييزي -->
+        <!-- ألوان رئيسية -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
+
+        <!-- ثانوي -->
         <item name="colorSecondary">@color/secondaryColor</item>
-        <item name="colorOnSecondary">@color/onSecondaryColor</item>
-        <!-- ألوان الخلفية والسطح (خلفيات الشرائح والعناصر) -->
-        <item name="android:colorBackground">@color/backgroundColor</item>
-        <item name="colorSurface">@color/surfaceColor</item>
-        <item name="colorOnSurface">@color/onSurfaceColor</item>
-        <!-- سمات إضافية (مثل مظهر النصوص) يمكن تضمينها حسب الحاجة -->
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
+
+        <!-- خلفيات وأسطح -->
+        <item name="android:colorBackground">@color/colorBackground</item>
+        <item name="colorSurface">@color/colorSurface</item>
+        <item name="colorOnSurface">@color/colorOnSurface</item>
+
+        <!-- إن احتجت مظهر نص عام يمكن إضافته هنا -->
     </style>
 </resources>
