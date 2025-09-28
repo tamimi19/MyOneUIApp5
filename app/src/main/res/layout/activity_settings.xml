@@ -7,51 +7,21 @@
     android:fitsSystemWindows="true"
     tools:context=".SettingsActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar_layout"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/app_bar_height"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Widget.Design.AppBarLayout"
-        app:elevation="0dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            style="@style/Widget.Design.CollapsingToolbar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
-            app:contentScrim="?attr/colorPrimary"
-            app:statusBarScrim="?attr/colorPrimaryVariant"
-            app:extendedTitleEnabled="true"
-            app:expandedTitleGravity="bottom|center_horizontal"
-            app:collapsedTitleGravity="top|start"
-            app:expandedTitleMarginStart="@dimen/content_padding_top"
-            app:expandedTitleMarginEnd="@dimen/content_padding_top"
-            app:expandedTitleMarginBottom="@dimen/content_padding_top"
-            app:toolbarId="@id/toolbar">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/ic_oui_arrow_back"
-                app:navigationContentDescription="@string/back_button"
-                app:titleTextColor="?attr/colorOnPrimary" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        app:navigationIcon="@drawable/ic_oui_arrow_back"
+        app:titleTextColor="@android:color/white"
+        app:title="@string/settings" />
 
     <!-- محتوى الإعدادات -->
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_marginTop="?attr/actionBarSize"
         android:fillViewport="true"
         android:contentDescription="@string/settings">
 
@@ -59,19 +29,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="@dimen/content_padding_top">
+            android:padding="16dp">
 
             <!-- حاوي Fragment للإعدادات -->
             <FrameLayout
                 android:id="@+id/settings_container"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp" />
+                android:layout_height="wrap_content" />
 
             <!-- مساحة إضافية في الأسفل -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/bottom_spacing" />
+                android:layout_height="56dp" />
 
         </LinearLayout>
 
