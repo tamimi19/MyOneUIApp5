@@ -23,12 +23,10 @@
             app:contentScrim="?attr/colorPrimary"
             app:statusBarScrim="?attr/colorPrimary"
             app:toolbarId="@id/toolbar"
-            app:titleEnabled="true"
-            app:expandedTitleMarginStart="16dp"
-            app:expandedTitleMarginEnd="16dp"
-            app:expandedTitleMarginBottom="16dp"
-            app:collapsedTitleTextAppearance="@style/OneUITitleTextAppearance"
-            app:expandedTitleTextAppearance="@style/OneUICustomTextAppearance">
+            app:titleEnabled="false"
+            app:expandedTitleMarginStart="0dp"
+            app:expandedTitleMarginEnd="0dp"
+            app:expandedTitleMarginBottom="0dp">
 
             <!-- Toolbar داخل CollapsingToolbarLayout -->
             <androidx.appcompat.widget.Toolbar
